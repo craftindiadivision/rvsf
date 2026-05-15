@@ -279,7 +279,9 @@ fixtures = [
                     "Item-custom_engine_no",
                     "Item-custom_state_name",
                     "Item-custom_rto_name",
-                    "Supplier Quotation-custom_lead"
+                    "Supplier Quotation-custom_purchase_lead",
+                    "Item-custom_column_break_ylzr4",
+                    "Item-custom_column_break_hx6lh",
                 ]
             ]
         ]
