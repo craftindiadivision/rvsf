@@ -11,6 +11,7 @@
   "naming_series",
   "company",
   "status",
+  "cost_center",
   "vehicle_scrap_form_section",
   "vehicle_registration_no",
   "vehicle_details_section",
@@ -293,12 +294,20 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Open\nAccepted\nRevised\nRejected\nQuotation Sent"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Cost Center",
+   "options": "Cost Center",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-15 11:30:54.637061",
+ "modified": "2026-05-15 15:58:53.697706",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",

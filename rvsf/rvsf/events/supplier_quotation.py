@@ -5,6 +5,8 @@ import frappe
 def update_supplier_quotation_status(supplier_quotation):
     doc = frappe.get_doc("Supplier Quotation", supplier_quotation)
     purchase_lead = frappe.get_doc("Purchase Lead", doc.custom_purchase_lead)
+    if not purchase_lead:
+        return
     if doc.workflow_state == "Accepted":
         purchase_lead.db_set("status", "Accepted")
     elif doc.workflow_state == "Rejected":

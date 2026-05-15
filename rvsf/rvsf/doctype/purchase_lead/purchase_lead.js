@@ -21,8 +21,8 @@ frappe.ui.form.on("Purchase Lead", {
                             message: __("Supplier Created Successfully"),
                             indicator: "green"
                         }, 5);
-
-                        frappe.set_route("Form", "Supplier", r.message);
+                        // frappe.set_route("Form", "Supplier", r.message);
+                        frm.reload_doc();
                     }
                 }
             });

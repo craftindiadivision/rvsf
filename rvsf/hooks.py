@@ -282,6 +282,23 @@ fixtures = [
                     "Supplier Quotation-custom_purchase_lead",
                     "Item-custom_column_break_ylzr4",
                     "Item-custom_column_break_hx6lh",
+                    "Supplier Quotation-custom_reason_for_rejection",
+                    "Supplier Quotation-custom_reason"
+                ]
+            ]
+        ]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Item-main-field_order",
+                    "Supplier Quotation-main-field_order",
+                    "Vehicle-last_odometer-reqd",
+                    "Vehicle-uom-default",
                 ]
             ]
         ]

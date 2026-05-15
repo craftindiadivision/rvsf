@@ -66,6 +66,14 @@ def make_supplier_quotation(source_name):
         item.custom_rto_name = source_doc.rto_name
         item.custom_vehicle_registration_no = source_doc.vehicle_registration_no
         item.insert(ignore_permissions=True)
+    if not frappe.db.exists("Vehicle", source_doc.vehicle_registration_no):
+        vehicle = frappe.new_doc("Vehicle")
+        vehicle.license_plate = source_doc.vehicle_registration_no
+        vehicle.model = source_doc.model_name
+        vehicle.make = source_doc.maker_name
+        vehicle.company = source_doc.company
+        vehicle.chassis_no = source_doc.chassis_no
+        vehicle.insert(ignore_permissions=True)
     supplier = frappe.db.get_value(
         "Supplier",
         {"supplier_name": source_doc.owner_name},
@@ -75,6 +83,7 @@ def make_supplier_quotation(source_name):
 
         target.supplier = supplier
         target.custom_purchase_lead = source.name
+        target.cost_center = source.cost_center
         supplier_address = frappe.db.get_value(
 			"Address",
 			{"address_title": source.owner_name},
