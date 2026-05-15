@@ -1,0 +1,326 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-05-12 11:43:47.346828",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_bu9z",
+  "amended_from",
+  "naming_series",
+  "company",
+  "status",
+  "vehicle_scrap_form_section",
+  "vehicle_registration_no",
+  "vehicle_details_section",
+  "maker_name",
+  "chassis_no",
+  "state_name",
+  "column_break_kqsz",
+  "model_name",
+  "engine_no",
+  "rto_name",
+  "column_break_igub",
+  "vehicle_category",
+  "monthyear_of_manufacture",
+  "norms",
+  "owner_details_section",
+  "owner_name",
+  "address1",
+  "state",
+  "pan_number",
+  "column_break_skfu",
+  "mobile_number",
+  "address2",
+  "district",
+  "column_break_tzht",
+  "email_id",
+  "address3",
+  "pin_code",
+  "vehicle_check_section",
+  "no_hypothecation",
+  "column_break_savm",
+  "ncrb_clearance",
+  "column_break_puri",
+  "not_black_listed",
+  "account_details_for_payment_transfer_by_scrapping_center_section",
+  "bank_name",
+  "ifsc",
+  "column_break_vkkg",
+  "branch",
+  "column_break_ylen",
+  "account_number",
+  "required_documents_section",
+  "vehicle_to_be_deposited_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_bu9z",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Purchase Lead",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "PL-"
+  },
+  {
+   "fieldname": "vehicle_scrap_form_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Scrap Form"
+  },
+  {
+   "fieldname": "vehicle_registration_no",
+   "fieldtype": "Data",
+   "label": "Vehicle Registration No"
+  },
+  {
+   "fieldname": "vehicle_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Details"
+  },
+  {
+   "fieldname": "maker_name",
+   "fieldtype": "Data",
+   "label": "Maker Name"
+  },
+  {
+   "fieldname": "model_name",
+   "fieldtype": "Data",
+   "label": "Model Name"
+  },
+  {
+   "fieldname": "vehicle_category",
+   "fieldtype": "Data",
+   "label": "Vehicle Category"
+  },
+  {
+   "fieldname": "chassis_no",
+   "fieldtype": "Data",
+   "label": "Chassis No"
+  },
+  {
+   "fieldname": "engine_no",
+   "fieldtype": "Data",
+   "label": "Engine No"
+  },
+  {
+   "fieldname": "monthyear_of_manufacture",
+   "fieldtype": "Data",
+   "label": "Month/Year of manufacture"
+  },
+  {
+   "fieldname": "state_name",
+   "fieldtype": "Data",
+   "label": "State Name"
+  },
+  {
+   "fieldname": "rto_name",
+   "fieldtype": "Data",
+   "label": "RTO Name"
+  },
+  {
+   "fieldname": "norms",
+   "fieldtype": "Data",
+   "label": "Norms"
+  },
+  {
+   "fieldname": "column_break_kqsz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_igub",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "owner_details_section",
+   "fieldtype": "Section Break",
+   "label": "Owner Details"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Phone",
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email Id"
+  },
+  {
+   "fieldname": "address1",
+   "fieldtype": "Data",
+   "label": "Address1"
+  },
+  {
+   "fieldname": "address2",
+   "fieldtype": "Data",
+   "label": "Address2"
+  },
+  {
+   "fieldname": "address3",
+   "fieldtype": "Data",
+   "label": "Address3"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "fieldname": "pin_code",
+   "fieldtype": "Int",
+   "label": "Pin Code"
+  },
+  {
+   "fieldname": "pan_number",
+   "fieldtype": "Data",
+   "label": "PAN Number"
+  },
+  {
+   "fieldname": "column_break_skfu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tzht",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vehicle_check_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Check"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_hypothecation",
+   "fieldtype": "Check",
+   "label": "No Hypothecation"
+  },
+  {
+   "default": "0",
+   "fieldname": "ncrb_clearance",
+   "fieldtype": "Check",
+   "label": "NCRB Clearance"
+  },
+  {
+   "default": "0",
+   "fieldname": "not_black_listed",
+   "fieldtype": "Check",
+   "label": "Not Black Listed"
+  },
+  {
+   "fieldname": "column_break_savm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_puri",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "account_details_for_payment_transfer_by_scrapping_center_section",
+   "fieldtype": "Section Break",
+   "label": "Account Details For Payment Transfer By Scrapping Center"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Link",
+   "label": "Bank Name",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Data",
+   "label": "Branch"
+  },
+  {
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "fieldname": "ifsc",
+   "fieldtype": "Data",
+   "label": "IFSC"
+  },
+  {
+   "fieldname": "column_break_vkkg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ylen",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "required_documents_section",
+   "fieldtype": "Section Break",
+   "label": "Required Documents"
+  },
+  {
+   "fieldname": "vehicle_to_be_deposited_by",
+   "fieldtype": "Data",
+   "label": "Vehicle To be Deposited By"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Open\nAccepted\nRevised\nRejected\nQuotation Sent"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-15 11:30:54.637061",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Purchase Lead",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

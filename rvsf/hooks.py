@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Supplier Quotation": "public/js/supplier_quotation.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -256,3 +256,32 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+    {
+        "dt": "Workflow",
+        "filters": [
+            ["name", "in", ["Supplier Quotation"]]
+        ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Item-custom_vehicle_details",
+                    "Item-custom_vehicle_registration_no",
+                    "Item-custom_maker_name",
+                    "Item-custom_model_name",
+                    "Item-custom_monthyear_of_manufacture",
+                    "Item-custom_chassis_no",
+                    "Item-custom_engine_no",
+                    "Item-custom_state_name",
+                    "Item-custom_rto_name",
+                    "Supplier Quotation-custom_lead"
+                ]
+            ]
+        ]
+    }
+]
