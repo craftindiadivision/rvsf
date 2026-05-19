@@ -1,0 +1,266 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-05-18 10:36:23.174181",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_quec",
+  "amended_from",
+  "company",
+  "naming_series",
+  "supplier",
+  "column_break_jkwy",
+  "vehicle",
+  "purchase_lead",
+  "purchase_order",
+  "cost_center",
+  "warehouse_section",
+  "source_warehouse",
+  "wip_warehouse",
+  "column_break_xwfx",
+  "fg_warehouse",
+  "scrap_warehouse",
+  "operations_section",
+  "operation",
+  "configuration_tab",
+  "time_section",
+  "planned_start_date",
+  "planned_end_date",
+  "column_break_bezf",
+  "actual_start_date",
+  "actual_end_date",
+  "operation_cost_section",
+  "planned_operating_cost",
+  "actual_operating_cost",
+  "additional_operating_cost",
+  "column_break_zodb",
+  "total_operating_cost",
+  "tab_3_tab",
+  "more_info_section",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_quec",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Execution Order",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle ",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"Vehicles\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order",
+   "options": "Purchase Order"
+  },
+  {
+   "fieldname": "column_break_jkwy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "EO-"
+  },
+  {
+   "fieldname": "warehouse_section",
+   "fieldtype": "Section Break",
+   "label": "Warehouse"
+  },
+  {
+   "description": "Warehouse or yard where the vehicle is currently stored before execution processing.",
+   "fieldname": "source_warehouse",
+   "fieldtype": "Link",
+   "label": "Source Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "description": "Warehouse where final recovered products and processed materials are stored.",
+   "fieldname": "fg_warehouse",
+   "fieldtype": "Link",
+   "label": "Target Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "description": "This is a location where operations are executed.\n",
+   "fieldname": "wip_warehouse",
+   "fieldtype": "Link",
+   "label": "Work-In-Progress Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "description": "This is a location where scraped materials are stored.\n",
+   "fieldname": "scrap_warehouse",
+   "fieldtype": "Link",
+   "label": "Scrap Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_xwfx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "purchase_lead",
+   "fieldtype": "Link",
+   "label": "Purchase Lead",
+   "options": "Purchase Lead"
+  },
+  {
+   "fieldname": "operations_section",
+   "fieldtype": "Section Break",
+   "label": "Operations"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Table",
+   "label": "Operation",
+   "options": "Execution Order Operation"
+  },
+  {
+   "fieldname": "configuration_tab",
+   "fieldtype": "Tab Break",
+   "label": "Configuration"
+  },
+  {
+   "fieldname": "time_section",
+   "fieldtype": "Section Break",
+   "label": "Time"
+  },
+  {
+   "fieldname": "planned_start_date",
+   "fieldtype": "Datetime",
+   "label": "Planned Start Date"
+  },
+  {
+   "fieldname": "planned_end_date",
+   "fieldtype": "Datetime",
+   "label": "Planned End Date"
+  },
+  {
+   "fieldname": "actual_start_date",
+   "fieldtype": "Datetime",
+   "label": "Actual Start Date"
+  },
+  {
+   "fieldname": "actual_end_date",
+   "fieldtype": "Datetime",
+   "label": "Actual End Date"
+  },
+  {
+   "fieldname": "column_break_bezf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "operation_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Operation Cost"
+  },
+  {
+   "fieldname": "planned_operating_cost",
+   "fieldtype": "Currency",
+   "label": "Planned Operating Cost"
+  },
+  {
+   "fieldname": "actual_operating_cost",
+   "fieldtype": "Currency",
+   "label": "Actual Operating Cost"
+  },
+  {
+   "fieldname": "additional_operating_cost",
+   "fieldtype": "Currency",
+   "label": "Additional Operating Cost"
+  },
+  {
+   "fieldname": "total_operating_cost",
+   "fieldtype": "Currency",
+   "label": "Total Operating Cost"
+  },
+  {
+   "fieldname": "column_break_zodb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tab_3_tab",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "more_info_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-05-18 14:29:30.683640",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Execution Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

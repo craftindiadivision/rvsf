@@ -3,7 +3,7 @@
 
 frappe.ui.form.on("Purchase Lead", {
     refresh(frm) {
-    if( !frm.is_new()){
+    if( !frm.is_new() && frm.doc.owner_name){
         frm.add_custom_button(__("Supplier"), () => {
             frappe.call({
                 method: "rvsf.rvsf.doctype.purchase_lead.purchase_lead.make_supplier",

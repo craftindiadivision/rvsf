@@ -1,0 +1,235 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-05-18 12:21:51.145810",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_tagd",
+  "amended_from",
+  "company",
+  "naming_series",
+  "column_break_cwoe",
+  "posting_date",
+  "execution_order",
+  "vehicle",
+  "operations_section",
+  "operation",
+  "source_warehouse",
+  "wip_warehouse",
+  "column_break_wqgm",
+  "scheduled_time_tab",
+  "scheduled_time_section",
+  "expected_start_date",
+  "expected_end_date",
+  "column_break_pgvp",
+  "expected_time_required_in_mins",
+  "section_break_pjip",
+  "scheduled_time_logs",
+  "actual_time_tab",
+  "actual_start_date",
+  "actual_end_date",
+  "total_time_in_mins",
+  "section_break_ayvq",
+  "time_logs",
+  "more_info_tab",
+  "status",
+  "sequence_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_tagd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Execution Job Card",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "EJC-"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "execution_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Execution Order",
+   "options": "Execution Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cwoe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle",
+   "options": "Item"
+  },
+  {
+   "fieldname": "operations_section",
+   "fieldtype": "Section Break",
+   "label": "Operations"
+  },
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "label": "Operation",
+   "options": "Operation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_warehouse",
+   "fieldtype": "Link",
+   "label": "Source Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "wip_warehouse",
+   "fieldtype": "Link",
+   "label": "Work In Progress Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_wqgm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scheduled_time_tab",
+   "fieldtype": "Tab Break",
+   "label": "Scheduled Time"
+  },
+  {
+   "fieldname": "scheduled_time_section",
+   "fieldtype": "Section Break",
+   "label": "Scheduled Time"
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Datetime",
+   "label": "Expected Start Date"
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Datetime",
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "expected_time_required_in_mins",
+   "fieldtype": "Float",
+   "label": "Expected Time Required (In Mins)"
+  },
+  {
+   "fieldname": "column_break_pgvp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_pjip",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scheduled_time_logs",
+   "fieldtype": "Table",
+   "label": "Scheduled Time Logs",
+   "options": "Job Card Scheduled Time"
+  },
+  {
+   "fieldname": "actual_time_tab",
+   "fieldtype": "Tab Break",
+   "label": "Actual Time"
+  },
+  {
+   "fieldname": "actual_start_date",
+   "fieldtype": "Datetime",
+   "label": "Actual Start Date"
+  },
+  {
+   "fieldname": "actual_end_date",
+   "fieldtype": "Datetime",
+   "label": "Actual End Date"
+  },
+  {
+   "fieldname": "total_time_in_mins",
+   "fieldtype": "Float",
+   "label": "Total Time in Mins"
+  },
+  {
+   "fieldname": "section_break_ayvq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "time_logs",
+   "fieldtype": "Table",
+   "label": "Time Logs",
+   "options": "Exectuion Job Card Time Log"
+  },
+  {
+   "fieldname": "more_info_tab",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Open\nWork In Progress\nMaterial Transferred\nOn Hold\nSubmitted\nCancelled\nCompleted"
+  },
+  {
+   "fieldname": "sequence_id",
+   "fieldtype": "Int",
+   "label": "Sequence Id"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-05-19 12:11:48.154438",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Execution Job Card",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,79 @@
+{
+ "app": "rvsf",
+ "charts": [],
+ "content": "[{\"id\":\"8H5oVRYqzG\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 16px;\\\">RVSF</span>\",\"col\":12}},{\"id\":\"DHw2YtJjFr\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"M-kROZt31Y\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"mg5S0XqibE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Lead\",\"col\":3}},{\"id\":\"9vBCGchOT-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier Quotation\",\"col\":3}}]",
+ "creation": "2026-05-17 12:13:34.943539",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "car",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "RVSF",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item",
+   "link_count": 0,
+   "link_to": "Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier",
+   "link_count": 0,
+   "link_to": "Supplier",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-17 12:19:37.593876",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "RVSF",
+ "number_cards": [],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{} Draft",
+   "label": "Supplier Quotation",
+   "link_to": "Supplier Quotation",
+   "stats_filter": "[[\"Supplier Quotation\",\"status\",\"=\",\"Draft\"]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "format": "{} Open",
+   "label": "Purchase Lead",
+   "link_to": "Purchase Lead",
+   "stats_filter": "[[\"Purchase Lead\",\"status\",\"=\",\"Open\"]]",
+   "type": "DocType"
+  }
+ ],
+ "title": "RVSF",
+ "type": "Workspace"
+}

@@ -53,7 +53,8 @@
   "column_break_ylen",
   "account_number",
   "required_documents_section",
-  "vehicle_to_be_deposited_by"
+  "vehicle_to_be_deposited_by",
+  "required_documents"
  ],
  "fields": [
   {
@@ -90,6 +91,7 @@
   {
    "fieldname": "vehicle_registration_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Vehicle Registration No"
   },
   {
@@ -100,11 +102,13 @@
   {
    "fieldname": "maker_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Maker Name"
   },
   {
    "fieldname": "model_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Model Name"
   },
   {
@@ -158,6 +162,7 @@
   {
    "fieldname": "owner_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Owner Name"
   },
   {
@@ -222,18 +227,21 @@
    "default": "0",
    "fieldname": "no_hypothecation",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "No Hypothecation"
   },
   {
    "default": "0",
    "fieldname": "ncrb_clearance",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "NCRB Clearance"
   },
   {
    "default": "0",
    "fieldname": "not_black_listed",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Not Black Listed"
   },
   {
@@ -292,6 +300,7 @@
    "default": "Open",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Open\nAccepted\nRevised\nRejected\nQuotation Sent"
   },
@@ -302,12 +311,18 @@
    "label": "Cost Center",
    "options": "Cost Center",
    "reqd": 1
+  },
+  {
+   "fieldname": "required_documents",
+   "fieldtype": "Table",
+   "label": "Required Documents",
+   "options": "Required Documents Purchase Lead"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-15 15:58:53.697706",
+ "modified": "2026-05-19 16:54:10.339317",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",
