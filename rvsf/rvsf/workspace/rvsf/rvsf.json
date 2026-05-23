@@ -1,7 +1,7 @@
 {
  "app": "rvsf",
  "charts": [],
- "content": "[{\"id\":\"8H5oVRYqzG\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 16px;\\\">RVSF</span>\",\"col\":12}},{\"id\":\"DHw2YtJjFr\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"M-kROZt31Y\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"mg5S0XqibE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Lead\",\"col\":3}},{\"id\":\"9vBCGchOT-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier Quotation\",\"col\":3}}]",
+ "content": "[{\"id\":\"8H5oVRYqzG\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 16px;\\\">RVSF</span>\",\"col\":12}},{\"id\":\"DHw2YtJjFr\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"M-kROZt31Y\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"mg5S0XqibE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Lead\",\"col\":3}},{\"id\":\"9vBCGchOT-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Supplier Quotation\",\"col\":3}},{\"id\":\"9YtKRpY4Lp\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
  "creation": "2026-05-17 12:13:34.943539",
  "custom_blocks": [],
  "docstatus": 0,
@@ -18,7 +18,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Masters",
-   "link_count": 2,
+   "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -42,9 +42,19 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicle",
+   "link_count": 0,
+   "link_to": "Vehicle",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-05-17 12:19:37.593876",
+ "modified": "2026-05-21 17:14:10.985070",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "RVSF",

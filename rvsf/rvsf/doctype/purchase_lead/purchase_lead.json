@@ -14,10 +14,12 @@
   "cost_center",
   "vehicle_scrap_form_section",
   "vehicle_registration_no",
+  "column_break_xekl",
   "vehicle_details_section",
   "maker_name",
   "chassis_no",
   "state_name",
+  "gst_hsn_code",
   "column_break_kqsz",
   "model_name",
   "engine_no",
@@ -35,6 +37,7 @@
   "mobile_number",
   "address2",
   "district",
+  "ownership_type",
   "column_break_tzht",
   "email_id",
   "address3",
@@ -92,7 +95,8 @@
    "fieldname": "vehicle_registration_no",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Vehicle Registration No"
+   "label": "Vehicle Registration No",
+   "reqd": 1
   },
   {
    "fieldname": "vehicle_details_section",
@@ -163,7 +167,8 @@
    "fieldname": "owner_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Owner Name"
+   "label": "Owner Name",
+   "reqd": 1
   },
   {
    "fieldname": "mobile_number",
@@ -178,7 +183,8 @@
   {
    "fieldname": "address1",
    "fieldtype": "Data",
-   "label": "Address1"
+   "label": "Address1",
+   "reqd": 1
   },
   {
    "fieldname": "address2",
@@ -193,17 +199,20 @@
   {
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "reqd": 1
   },
   {
    "fieldname": "district",
    "fieldtype": "Data",
-   "label": "District"
+   "label": "District",
+   "reqd": 1
   },
   {
    "fieldname": "pin_code",
-   "fieldtype": "Int",
-   "label": "Pin Code"
+   "fieldtype": "Data",
+   "label": "Pin Code",
+   "reqd": 1
   },
   {
    "fieldname": "pan_number",
@@ -317,12 +326,30 @@
    "fieldtype": "Table",
    "label": "Required Documents",
    "options": "Required Documents Purchase Lead"
+  },
+  {
+   "default": "7204",
+   "fieldname": "gst_hsn_code",
+   "fieldtype": "Data",
+   "label": "HSN/SAC",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_xekl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Private",
+   "fieldname": "ownership_type",
+   "fieldtype": "Select",
+   "label": "Ownership Type",
+   "options": "Private\nCommercial\nDefence\nGovernment"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-19 16:54:10.339317",
+ "modified": "2026-05-20 11:02:48.186467",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",

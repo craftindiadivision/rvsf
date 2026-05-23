@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:time_slot",
+ "creation": "2026-05-20 11:46:31.300320",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "time_slot",
+  "is_active",
+  "holiday_list",
+  "timing_section",
+  "start_time",
+  "slot_duration",
+  "column_break_iaed",
+  "end_time",
+  "section_break_bqes",
+  "working_days",
+  "slot_details_section",
+  "slot_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "time_slot",
+   "fieldtype": "Data",
+   "label": "Time Slot Name",
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "timing_section",
+   "fieldtype": "Section Break",
+   "label": "Timing"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time"
+  },
+  {
+   "fieldname": "slot_duration",
+   "fieldtype": "Float",
+   "label": "Slot Duration"
+  },
+  {
+   "fieldname": "holiday_list",
+   "fieldtype": "Link",
+   "label": "Holiday List",
+   "options": "Holiday List"
+  },
+  {
+   "fieldname": "section_break_bqes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "working_days",
+   "fieldtype": "Table",
+   "label": "Working Days",
+   "options": "Time Slot Working Day"
+  },
+  {
+   "fieldname": "slot_details_section",
+   "fieldtype": "Section Break",
+   "label": "Slot Details"
+  },
+  {
+   "fieldname": "slot_details",
+   "fieldtype": "Table",
+   "label": "Slot Details",
+   "options": "Time Slot Detail"
+  },
+  {
+   "fieldname": "column_break_iaed",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-20 17:59:51.482983",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Time Slot Template",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

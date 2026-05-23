@@ -56,6 +56,7 @@ def make_supplier_quotation(source_name):
         item.item_name = source_doc.model_name
         item.item_group = "Vehicles"
         item.stock_uom = "Nos"
+        item.gst_hsn_code = source_doc.gst_hsn_code
         item.custom_vehicle_category = source_doc.vehicle_category
         item.custom_maker_name = source_doc.maker_name
         item.custom_model_name = source_doc.model_name
@@ -64,6 +65,7 @@ def make_supplier_quotation(source_name):
         item.custom_engine_no = source_doc.engine_no
         item.custom_state_name = source_doc.state
         item.custom_rto_name = source_doc.rto_name
+        item.custom_ownership_type = source_doc.ownership_type
         item.custom_vehicle_registration_no = source_doc.vehicle_registration_no
         item.insert(ignore_permissions=True)
     if not frappe.db.exists("Vehicle", source_doc.vehicle_registration_no):

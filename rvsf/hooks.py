@@ -44,6 +44,7 @@ app_license = "mit"
 
 # include js in doctype views
 doctype_js = {"Supplier Quotation": "public/js/supplier_quotation.js"}
+doctype_js = {"Purchase Order": "public/js/purchase_order.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -260,7 +261,7 @@ fixtures = [
     {
         "dt": "Workflow",
         "filters": [
-            ["name", "in", ["Supplier Quotation"]]
+            ["name", "in", ["Supplier Quotation","Gate Pass"]]
         ]
     },
     {
@@ -283,7 +284,8 @@ fixtures = [
                     "Item-custom_column_break_ylzr4",
                     "Item-custom_column_break_hx6lh",
                     "Supplier Quotation-custom_reason_for_rejection",
-                    "Supplier Quotation-custom_reason"
+                    "Supplier Quotation-custom_reason",
+                    "Item-custom_ownership_type"
                 ]
             ]
         ]
@@ -302,5 +304,21 @@ fixtures = [
                 ]
             ]
         ]
-    }
+    },
+    {
+    "dt": "Workflow State",
+    "filters": [
+        ["name", "in", [
+            "Draft","Sent","Revised","Rejected","Accepted","Cancelled","Issued","Valid","Invalid"
+        ]]
+    ]
+    },
+    {
+    "dt": "Workflow Action Master",
+    "filters": [
+        ["name", "in", [
+            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid"
+        ]]
+    ]
+    },
 ]

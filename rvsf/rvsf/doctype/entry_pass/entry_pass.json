@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-05-20 12:25:27.863598",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "entry_type",
+  "gate_pass_id",
+  "vehicle",
+  "visitor_details_section",
+  "visitor_name",
+  "column_break_pani",
+  "contact_no",
+  "movement_tracking_section",
+  "entry_time",
+  "entry_approved_by",
+  "entry_approved_by_name",
+  "column_break_pwfb",
+  "exit_time",
+  "exit_approved_by",
+  "exit_approved_by_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Entry Pass ID",
+   "options": "EP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gate_pass_id",
+   "fieldtype": "Link",
+   "label": "Gate Pass ID",
+   "options": "Gate Pass"
+  },
+  {
+   "fieldname": "entry_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Entry Type",
+   "options": "Dismantling\nEnquiry\nVisitor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle ",
+   "mandatory_depends_on": "eval:doc.gate_pass_id",
+   "options": "Item"
+  },
+  {
+   "fieldname": "movement_tracking_section",
+   "fieldtype": "Section Break",
+   "label": "Movement Tracking"
+  },
+  {
+   "fieldname": "entry_approved_by",
+   "fieldtype": "Link",
+   "label": "Entry Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exit_approved_by",
+   "fieldtype": "Link",
+   "label": "Exit Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "entry_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Entry Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pwfb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "exit_time",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Exit Time"
+  },
+  {
+   "fieldname": "visitor_name",
+   "fieldtype": "Data",
+   "label": "Visitor Name"
+  },
+  {
+   "fieldname": "contact_no",
+   "fieldtype": "Phone",
+   "label": "Contact No"
+  },
+  {
+   "fieldname": "visitor_details_section",
+   "fieldtype": "Section Break",
+   "label": "Visitor Details"
+  },
+  {
+   "fieldname": "column_break_pani",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "entry_approved_by_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Entry Approved By (Name)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exit_approved_by_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Exit Approved By (Name)",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-21 17:38:10.625146",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Entry Pass",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
