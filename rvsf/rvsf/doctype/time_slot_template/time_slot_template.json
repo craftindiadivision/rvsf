@@ -14,6 +14,7 @@
   "slot_duration",
   "column_break_iaed",
   "end_time",
+  "max_vehicles_per_slot",
   "section_break_bqes",
   "working_days",
   "slot_details_section",
@@ -82,12 +83,17 @@
   {
    "fieldname": "column_break_iaed",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "max_vehicles_per_slot",
+   "fieldtype": "Int",
+   "label": "Maximum Vehicles Per Slot"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-20 17:59:51.482983",
+ "modified": "2026-05-27 10:07:31.674178",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Time Slot Template",
