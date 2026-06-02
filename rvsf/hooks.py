@@ -148,7 +148,7 @@ doctype_js = {"Purchase Order": "public/js/purchase_order.js"}
 # }
 doc_events = {
     "Stock Entry": {
-        "on_cancel": "rvsf.rvsf.doctype.stock_entry.stock_entry.on_cancel"
+        "on_cancel": "rvsf.rvsf.events.stock_entry.on_cancel"
     }
 }
 

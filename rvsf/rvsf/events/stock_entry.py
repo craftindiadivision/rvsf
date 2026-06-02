@@ -8,7 +8,6 @@ def on_cancel(self,method=None):
                 self.custom_execution_order,
                 {
                     "status": "Work In Progress",
-                    "stock_entry": None
                 },
                 update_modified=False
             )
