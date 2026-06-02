@@ -146,6 +146,11 @@ doctype_js = {"Purchase Order": "public/js/purchase_order.js"}
 # 		"on_trash": "method"
 # 	}
 # }
+doc_events = {
+    "Stock Entry": {
+        "on_cancel": "rvsf.rvsf.doctype.stock_entry.stock_entry.on_cancel"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -285,7 +290,9 @@ fixtures = [
                     "Item-custom_column_break_hx6lh",
                     "Supplier Quotation-custom_reason_for_rejection",
                     "Supplier Quotation-custom_reason",
-                    "Item-custom_ownership_type"
+                    "Item-custom_ownership_type",
+                    "Stock Entry-custom_execution_order",
+                    "Operation-custom_is_recovery_operation"
                 ]
             ]
         ]
@@ -301,6 +308,8 @@ fixtures = [
                     "Supplier Quotation-main-field_order",
                     "Vehicle-last_odometer-reqd",
                     "Vehicle-uom-default",
+                    "Stock Entry-main-field_order",
+                    "Operation-main-field_order"
                 ]
             ]
         ]

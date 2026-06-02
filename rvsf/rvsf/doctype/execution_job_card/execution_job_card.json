@@ -10,6 +10,7 @@
   "amended_from",
   "company",
   "naming_series",
+  "employee",
   "column_break_cwoe",
   "posting_date",
   "execution_order",
@@ -19,6 +20,7 @@
   "source_warehouse",
   "wip_warehouse",
   "column_break_wqgm",
+  "is_recovery_operation",
   "scheduled_time_tab",
   "scheduled_time_section",
   "expected_start_date",
@@ -35,7 +37,11 @@
   "time_logs",
   "more_info_tab",
   "status",
-  "sequence_id"
+  "sequence_id",
+  "recovered_parts_tab",
+  "recovered_parts_section",
+  "recovered_parts_template",
+  "recovered_parts"
  ],
  "fields": [
   {
@@ -66,6 +72,7 @@
    "options": "EJC-"
   },
   {
+   "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
@@ -85,6 +92,7 @@
   {
    "fieldname": "vehicle",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Vehicle",
    "options": "Item"
   },
@@ -96,6 +104,7 @@
   {
    "fieldname": "operation",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Operation",
    "options": "Operation",
    "reqd": 1
@@ -193,6 +202,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Open\nWork In Progress\nMaterial Transferred\nOn Hold\nSubmitted\nCancelled\nCompleted"
   },
@@ -200,13 +210,50 @@
    "fieldname": "sequence_id",
    "fieldtype": "Int",
    "label": "Sequence Id"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Table MultiSelect",
+   "label": "Employee",
+   "options": "Assign Employee",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.is_recovery_operation === 1",
+   "fieldname": "recovered_parts_tab",
+   "fieldtype": "Tab Break",
+   "label": "Recovered Parts"
+  },
+  {
+   "fieldname": "recovered_parts_section",
+   "fieldtype": "Section Break",
+   "label": "Recovered Parts"
+  },
+  {
+   "fieldname": "recovered_parts",
+   "fieldtype": "Table",
+   "label": "Recovered Parts",
+   "options": "Recovered Items"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_recovery_operation",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": " Is Recovery Operation"
+  },
+  {
+   "fieldname": "recovered_parts_template",
+   "fieldtype": "Link",
+   "label": "Recovered Parts Template",
+   "options": "Recovered Parts Template"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-19 12:11:48.154438",
+ "modified": "2026-06-02 11:29:25.375656",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Job Card",
