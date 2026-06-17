@@ -23,6 +23,8 @@ def make_gate_pass(source_name, target_doc=None):
                     "company": "company",
                     "supplier": "supplier",
                     "posting_date": "posting_date",
+                    "custom_purchase_lead": "purchase_lead",
+                    "cost_center": "cost_center"
                 },
                 "field_no_map": [
                 "naming_series","status"

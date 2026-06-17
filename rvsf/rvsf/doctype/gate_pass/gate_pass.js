@@ -51,11 +51,21 @@ frappe.ui.form.on("Gate Pass", {
             });
         }
     if (frm.doc.docstatus === 1 && frm.doc.status === "Valid" && frm.doc.is_entry_pass_issued){
-            frm.add_custom_button(__("Verify Documents"), function () {
-                frappe.model.open_mapped_doc({
-                    method: "rvsf.rvsf.doctype.gate_pass.gate_pass.verify_documents",
-                    frm: frm
-                });
+            frappe.call({
+                method: "rvsf.rvsf.doctype.gate_pass.gate_pass.check_physical_verification",
+                args: {
+                    gate_pass: frm.doc.name
+                },
+                callback: function(r) {
+                    if (!r.message) {
+                        frm.add_custom_button(__("Verify Documents"), function () {
+                            frappe.model.open_mapped_doc({
+                                method: "rvsf.rvsf.doctype.gate_pass.gate_pass.verify_documents",
+                                frm: frm
+                            });
+                        });
+                    }
+                }
             });
         }
     },

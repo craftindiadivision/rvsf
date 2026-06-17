@@ -42,6 +42,7 @@
   "email_id",
   "address3",
   "pin_code",
+  "supplier_address",
   "vehicle_check_section",
   "no_hypothecation",
   "column_break_savm",
@@ -328,7 +329,7 @@
    "options": "Required Documents Purchase Lead"
   },
   {
-   "default": "7204",
+   "default": "72044900",
    "fieldname": "gst_hsn_code",
    "fieldtype": "Data",
    "label": "HSN/SAC",
@@ -344,12 +345,19 @@
    "fieldtype": "Select",
    "label": "Ownership Type",
    "options": "Private\nCommercial\nDefence\nGovernment"
+  },
+  {
+   "fieldname": "supplier_address",
+   "fieldtype": "Link",
+   "label": "Supplier Address",
+   "options": "Address",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-20 11:02:48.186467",
+ "modified": "2026-06-15 14:20:52.481767",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",

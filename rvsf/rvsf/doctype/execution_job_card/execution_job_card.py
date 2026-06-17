@@ -11,13 +11,24 @@ class ExecutionJobCard(Document):
 	def validate(self):
      
 		self.update_job_status()
+		if self.status != "Open":
+			self.sync_operation_status()
 	def on_submit(self):
-		if self.status != "Completed":
-			frappe.throw("Cannot submit Job Card which is not completed.")
+		if not self.time_logs:
+			frappe.throw(
+				"Please start and complete the operation before submitting this Job Card."
+			)
+		for row in self.time_logs:
+			if row.from_time and not row.to_time:
+				frappe.throw("Please stop the running timer before submitting.")
+		self.db_set("status", "Completed")
 		self.sync_operation_actuals()
+		self.sync_operation_status()
 		self.update_execution_order_actuals()
 		self.map_recovered_parts_to_execution_order()
 		self.update_execution_order_status()
+		self.check_recovered_parts()
+		
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
 		self.sync_operation_actuals()
@@ -33,6 +44,8 @@ class ExecutionJobCard(Document):
 			self.actual_end_date = None
 			self.total_time_in_mins = 0
 			return
+		elif self.time_logs and self.amended_from:
+			self.status = "Work In Progress"
 	def update_execution_order_status(self):
 
 		if not self.execution_order:
@@ -47,14 +60,13 @@ class ExecutionJobCard(Document):
 			row for row in execution_order.operations
 			if row.status == "Completed"
 		])
-
 		if completed_operations > 0:
 
 			execution_order.status = "Work In Progress"
 
 		else:
 
-			execution_order.status = "Draft"
+			execution_order.status = "Submitted"
 
 		execution_order.flags.ignore_validate_update_after_submit = True
 		execution_order.save(ignore_version=True)
@@ -80,13 +92,15 @@ class ExecutionJobCard(Document):
 		if not exists:
 
 			for row in execution_order.operations:
-
 				if row.operation == self.operation:
-					row.status = "Pending"
+					frappe.db.set_value(
+						row.doctype,
+						row.name,
+						"status",
+						"Pending"
+					)
 					break
-
-		execution_order.flags.ignore_validate_update_after_submit = True
-		execution_order.save(ignore_version=True)
+ 
 	def map_recovered_parts_to_execution_order(doc, method=None):
 
 		if not doc.execution_order:
@@ -146,7 +160,6 @@ class ExecutionJobCard(Document):
 			}
 		)
 	def sync_operation_status(self):
-
 		if not self.execution_order:
 			return
 
@@ -278,6 +291,9 @@ class ExecutionJobCard(Document):
 
 		execution_order.flags.ignore_validate_update_after_submit = True
 		execution_order.save(ignore_version=True)
+	def check_recovered_parts(self):
+		if not self.recovered_parts and self.is_recovery_operation:
+			frappe.throw("Please add recovered parts before submitting the Job Card.")
 @frappe.whitelist()
 def start_job(docname, employees=None):
     import json
@@ -353,8 +369,7 @@ def finish_job(docname):
             row.time_in_mins = total_seconds / 60
 
     doc.actual_end_date = current_time
-    print("Updating status to Completed",doc.status)
-    doc.status = "Completed"
+    doc.status = "Work In Progress"
 
     calculate_total_time(doc)
 

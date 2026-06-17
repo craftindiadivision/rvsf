@@ -11,6 +11,7 @@
   "uom",
   "warehouse",
   "qty",
+  "weight_uom",
   "weight"
  ],
  "fields": [
@@ -56,13 +57,20 @@
    "fieldtype": "Link",
    "label": "UOM",
    "options": "UOM"
+  },
+  {
+   "default": "Kg",
+   "fieldname": "weight_uom",
+   "fieldtype": "Link",
+   "label": "Weight UOM",
+   "options": "UOM"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-05-29 12:26:41.843640",
+ "modified": "2026-06-16 12:35:01.967306",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Recovered Items",

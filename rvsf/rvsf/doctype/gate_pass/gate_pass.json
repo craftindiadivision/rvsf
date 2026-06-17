@@ -12,9 +12,11 @@
   "company",
   "supplier",
   "status",
+  "cost_center",
   "column_break_zcny",
   "posting_date",
   "posting_time",
+  "purchase_lead",
   "purchase_order",
   "is_entry_pass_issued",
   "vehicle_information_section",
@@ -195,13 +197,25 @@
    "fieldtype": "Check",
    "label": "Is Entry Pass Issued",
    "read_only": 1
+  },
+  {
+   "fieldname": "purchase_lead",
+   "fieldtype": "Link",
+   "label": "Purchase Lead",
+   "options": "Purchase Lead"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-22 17:20:00.306265",
+ "modified": "2026-06-15 17:32:20.962825",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Gate Pass",

@@ -292,7 +292,8 @@ fixtures = [
                     "Supplier Quotation-custom_reason",
                     "Item-custom_ownership_type",
                     "Stock Entry-custom_execution_order",
-                    "Operation-custom_is_recovery_operation"
+                    "Operation-custom_is_recovery_operation",
+                    "Purchase Order-custom_purchase_lead"
                 ]
             ]
         ]
@@ -318,7 +319,8 @@ fixtures = [
     "dt": "Workflow State",
     "filters": [
         ["name", "in", [
-            "Draft","Sent","Revised","Rejected","Accepted","Cancelled","Issued","Valid","Invalid"
+            "Draft","Sent","Revised","Rejected","Accepted","Cancelled","Issued","Valid","Invalid","Inspected","Verified", "Authorised","Submitted", "Under Valuation", 
+            "Valuation Approved", 
         ]]
     ]
     },
@@ -326,7 +328,7 @@ fixtures = [
     "dt": "Workflow Action Master",
     "filters": [
         ["name", "in", [
-            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid"
+            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid","Inspect","Verify","Authorise", "Submit","Send For Valuation","Approve Valuation"
         ]]
     ]
     },

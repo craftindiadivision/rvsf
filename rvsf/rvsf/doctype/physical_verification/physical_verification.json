@@ -1,0 +1,322 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-11 16:52:40.958241",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_amjo",
+  "amended_from",
+  "company",
+  "gate_pass_no",
+  "purchase_order",
+  "column_break_gxdv",
+  "naming_series",
+  "date",
+  "time_in",
+  "cost_center",
+  "vehicle_details_section",
+  "purchase_lead",
+  "vehicle",
+  "fuel_type",
+  "aadhar_no",
+  "pan_no",
+  "engine_number",
+  "chassis_number",
+  "supplier",
+  "supplier_address",
+  "address",
+  "column_break_qggg",
+  "owner_name",
+  "maker_name",
+  "model_name",
+  "contact_number",
+  "vehicle_submission_details",
+  "weight_at_entry_bridge_unladen_weight",
+  "odometer_reading",
+  "working_condition",
+  "details_of_authorised_person_and_letter_in_stamp_paper",
+  "vehicle_condition_assessment_section",
+  "vehicle_condition_assessment",
+  "section_break_yafd",
+  "inspected_by",
+  "inspected_by_name",
+  "column_break_zmjm",
+  "verified_by",
+  "verified_by_name",
+  "column_break_eoxu",
+  "authorized_by",
+  "authorized_by_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_amjo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Physical Verification",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gate_pass_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Gate Pass No",
+   "options": "Gate Pass",
+   "reqd": 1
+  },
+  {
+   "default": "PV.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "PV.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_gxdv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "time_in",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Time In"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "vehicle_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Details"
+  },
+  {
+   "fieldname": "owner_name",
+   "fieldtype": "Data",
+   "label": "Owner Name"
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Select",
+   "label": "Fuel Type",
+   "options": "\nPetrol\nDiesel\nCNG\nEV"
+  },
+  {
+   "fieldname": "aadhar_no",
+   "fieldtype": "Data",
+   "label": "Aadhar No"
+  },
+  {
+   "fieldname": "pan_no",
+   "fieldtype": "Data",
+   "label": "PAN No"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "HTML",
+   "label": "Address"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "vehicle_submission_details",
+   "fieldtype": "Select",
+   "label": "Vehicle Submission Details",
+   "options": "\nSelf\nAuthorized Person"
+  },
+  {
+   "fieldname": "details_of_authorised_person_and_letter_in_stamp_paper",
+   "fieldtype": "Long Text",
+   "label": "Details of authorised Person and Letter In stamp paper"
+  },
+  {
+   "fieldname": "chassis_number",
+   "fieldtype": "Data",
+   "label": "Chassis Number"
+  },
+  {
+   "fieldname": "engine_number",
+   "fieldtype": "Data",
+   "label": "Engine Number"
+  },
+  {
+   "fieldname": "odometer_reading",
+   "fieldtype": "Data",
+   "label": "Odometer Reading"
+  },
+  {
+   "fieldname": "working_condition",
+   "fieldtype": "Data",
+   "label": "Working condition"
+  },
+  {
+   "fieldname": "weight_at_entry_bridge_unladen_weight",
+   "fieldtype": "Float",
+   "label": "Weight at Entry (Bridge)/ Unladen Weight"
+  },
+  {
+   "fieldname": "column_break_qggg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vehicle_condition_assessment_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Condition Assessment"
+  },
+  {
+   "fieldname": "vehicle_condition_assessment",
+   "fieldtype": "Table",
+   "label": "Vehicle Condition Assessment",
+   "options": "Vehicle Condition Assessment"
+  },
+  {
+   "fieldname": "section_break_yafd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By",
+   "options": "User"
+  },
+  {
+   "fieldname": "inspected_by_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Inspected By (Name)"
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "Verified By",
+   "options": "User"
+  },
+  {
+   "fieldname": "verified_by_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Verified By (Name)"
+  },
+  {
+   "fieldname": "authorized_by",
+   "fieldtype": "Link",
+   "label": "Authorized By",
+   "options": "User"
+  },
+  {
+   "fieldname": "authorized_by_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Authorized By (Name)"
+  },
+  {
+   "fieldname": "column_break_zmjm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_eoxu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_lead",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Purchase Lead",
+   "options": "Purchase Lead",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vehicle",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier_address",
+   "fieldtype": "Link",
+   "label": "Supplier Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "maker_name",
+   "fieldtype": "Data",
+   "label": "Maker Name"
+  },
+  {
+   "fieldname": "model_name",
+   "fieldtype": "Data",
+   "label": "Model Name"
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order",
+   "options": "Purchase Order"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-17 10:08:24.462914",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Physical Verification",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
