@@ -5,11 +5,12 @@ from pydoc import doc
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import now_datetime, time_diff_in_seconds
+from frappe.utils import now_datetime, time_diff_in_seconds,flt
 
 class ExecutionJobCard(Document):
 	def validate(self):
-     
+		if self.is_recovery_operation:
+			self.calculate_total_weight()
 		self.update_job_status()
 		if self.status != "Open":
 			self.sync_operation_status()
@@ -119,7 +120,7 @@ class ExecutionJobCard(Document):
 					f"Recovered Parts from Job Card {doc.name} "
 					f"already exist in Execution Order {execution_order.name}"
 				)
-
+		
 		# Map rows
 		for row in doc.recovered_parts:
 
@@ -133,7 +134,10 @@ class ExecutionJobCard(Document):
 				"source_job_card": doc.name,
 				"operation": doc.operation
 			})
-
+		execution_order.total_weight = sum(
+			flt(row.weight)
+			for row in execution_order.recovered_parts
+		)
 		execution_order.flags.ignore_validate_update_after_submit = True
 		execution_order.save()
   
@@ -294,11 +298,18 @@ class ExecutionJobCard(Document):
 	def check_recovered_parts(self):
 		if not self.recovered_parts and self.is_recovery_operation:
 			frappe.throw("Please add recovered parts before submitting the Job Card.")
+	def calculate_total_weight(self):
+		self.total_weight = sum(
+			flt(row.weight)
+			for row in self.recovered_parts
+		)
 @frappe.whitelist()
 def start_job(docname, employees=None):
     import json
     doc = frappe.get_doc("Execution Job Card", docname)
-
+    if doc.is_recovery_operation:
+        execution_order = doc.execution_order
+        validate_cod_issued(execution_order)
     # handle json string
     if isinstance(employees, str):
         employees = json.loads(employees)
@@ -468,3 +479,20 @@ def get_recovered_parts_template(template):
             })
         return data
 
+def validate_cod_issued(execution_order):
+
+    purchase_lead = frappe.db.get_value(
+        "Execution Order",
+        execution_order,
+        "purchase_lead"
+    )
+
+    if not frappe.db.exists(
+        "Certificate Of Deposit",
+        {
+            "purchase_lead": purchase_lead,
+        }
+    ):
+        frappe.throw(
+            ("Certificate of Deposit must be issued and submitted before proceeding.")
+        )

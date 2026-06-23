@@ -5,8 +5,10 @@ from tempfile import template
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import getdate,get_time
+from frappe.utils import getdate,get_time,now_datetime
 from frappe.model.mapper import get_mapped_doc
+from datetime import timedelta
+
 
 class GatePass(Document):
 	def on_submit(self):
@@ -36,6 +38,15 @@ def get_available_slots(template, scheduled_date):
     for row in template_doc.slot_details:
         if row.day != weekday:
             continue
+        if getdate(scheduled_date) == now_datetime().date():
+            current_time = timedelta(
+                hours=now_datetime().hour,
+                minutes=now_datetime().minute,
+                seconds=now_datetime().second
+            )
+
+            if row.start_time <= current_time:
+                continue
         booking_count = frappe.db.count(
             "Gate Pass",
             {
@@ -161,6 +172,8 @@ def verify_documents(source_name, target_doc=None):
             target.engine_number = pl.engine_no
             target.maker_name = pl.maker_name
             target.model_name = pl.model_name
+            target.fuel_type = pl.fuel_type
+            target.aadhar_no = pl.aadhar_no
 
     doc = get_mapped_doc(
         "Gate Pass",

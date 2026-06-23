@@ -24,14 +24,17 @@
   "model_name",
   "engine_no",
   "rto_name",
+  "fuel_type",
   "column_break_igub",
   "vehicle_category",
   "monthyear_of_manufacture",
   "norms",
+  "rc_weight",
   "owner_details_section",
   "owner_name",
   "address1",
   "state",
+  "aadhar_no",
   "pan_number",
   "column_break_skfu",
   "mobile_number",
@@ -108,13 +111,15 @@
    "fieldname": "maker_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Maker Name"
+   "label": "Maker Name",
+   "reqd": 1
   },
   {
    "fieldname": "model_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Model Name"
+   "label": "Model Name",
+   "reqd": 1
   },
   {
    "fieldname": "vehicle_category",
@@ -234,21 +239,21 @@
    "label": "Vehicle Check"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "no_hypothecation",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "No Hypothecation"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "ncrb_clearance",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "NCRB Clearance"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "not_black_listed",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -352,12 +357,50 @@
    "label": "Supplier Address",
    "options": "Address",
    "read_only": 1
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Select",
+   "label": "Fuel Type",
+   "options": "\nPetrol\nDiesel\nCNG\nEV"
+  },
+  {
+   "fieldname": "aadhar_no",
+   "fieldtype": "Int",
+   "label": "Aadhar No"
+  },
+  {
+   "fieldname": "rc_weight",
+   "fieldtype": "Float",
+   "label": "RC Weight",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2026-06-15 14:20:52.481767",
+ "links": [
+  {
+   "link_doctype": "Supplier Quotation",
+   "link_fieldname": "custom_purchase_lead"
+  },
+  {
+   "link_doctype": "Purchase Order",
+   "link_fieldname": "custom_purchase_lead"
+  },
+  {
+   "link_doctype": "Purchase Receipt",
+   "link_fieldname": "custom_purchase_lead"
+  },
+  {
+   "link_doctype": "Execution Order",
+   "link_fieldname": "purchase_lead"
+  },
+  {
+   "link_doctype": "Gate Pass",
+   "link_fieldname": "purchase_lead"
+  }
+ ],
+ "modified": "2026-06-23 17:51:28.254555",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",

@@ -258,3 +258,23 @@ frappe.ui.form.on("Execution Job Card", {
         });
     }
 });
+
+frappe.ui.form.on("Recovered Item", {
+    weight(frm, cdt, cdn) {
+        calculate_total_weight(frm);
+    },
+
+    recovered_items_remove(frm) {
+        calculate_total_weight(frm);
+    }
+});
+
+function calculate_total_weight(frm) {
+    let total = 0;
+
+    (frm.doc.recovered_items || []).forEach(row => {
+        total += flt(row.weight);
+    });
+
+    frm.set_value("total_weight", total);
+}

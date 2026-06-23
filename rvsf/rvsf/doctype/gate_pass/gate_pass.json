@@ -214,8 +214,17 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2026-06-15 17:32:20.962825",
+ "links": [
+  {
+   "link_doctype": "Entry Pass",
+   "link_fieldname": "gate_pass_id"
+  },
+  {
+   "link_doctype": "Physical Verification",
+   "link_fieldname": "gate_pass_no"
+  }
+ ],
+ "modified": "2026-06-23 17:32:35.787980",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Gate Pass",

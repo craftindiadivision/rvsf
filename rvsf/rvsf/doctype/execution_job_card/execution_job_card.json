@@ -25,6 +25,7 @@
   "recovered_parts_section",
   "recovered_parts_template",
   "recovered_parts",
+  "total_weight",
   "scheduled_time_tab",
   "scheduled_time_section",
   "expected_start_date",
@@ -41,7 +42,11 @@
   "time_logs",
   "more_info_tab",
   "status",
-  "sequence_id"
+  "sequence_id",
+  "vehicle_photos_tab",
+  "vehicle_photos_section",
+  "vehicle_photos",
+  "weight"
  ],
  "fields": [
   {
@@ -251,13 +256,43 @@
    "fieldtype": "Link",
    "label": "Recovered Parts Template",
    "options": "Recovered Parts Template"
+  },
+  {
+   "depends_on": "eval:doc.is_recovery_operation === 0",
+   "fieldname": "vehicle_photos_tab",
+   "fieldtype": "Tab Break",
+   "label": "Vehicle Details"
+  },
+  {
+   "fieldname": "vehicle_photos_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Photos"
+  },
+  {
+   "depends_on": "eval:doc.is_recovery_operation === 0",
+   "fieldname": "vehicle_photos",
+   "fieldtype": "Table",
+   "label": "Vehicle Photos",
+   "options": "Vehicle Photos"
+  },
+  {
+   "depends_on": "eval:doc.is_recovery_operation === 0",
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight",
+   "precision": "4"
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-16 21:29:02.751878",
+ "modified": "2026-06-17 18:10:02.411282",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Job Card",

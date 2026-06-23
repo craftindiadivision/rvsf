@@ -7,7 +7,7 @@ frappe.ui.form.on("Physical Verification", {
         frappe.db.exists("Execution Order", {
             physical_verification_check_list: frm.doc.name
         }).then(exists => {
-            if (!exists) {
+            if (!exists && frm.doc.authorized_by) {
                 frm.add_custom_button(__("Create Execution Order"), function () {
                     frappe.model.open_mapped_doc({
                         method: "rvsf.rvsf.doctype.physical_verification.physical_verification.make_work_order",
