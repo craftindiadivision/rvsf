@@ -61,7 +61,8 @@
   {
    "fieldname": "planned_start_time",
    "fieldtype": "Datetime",
-   "label": "Planned Start Time"
+   "label": "Planned Start Time",
+   "read_only": 1
   },
   {
    "fieldname": "hour_rate",
@@ -80,7 +81,8 @@
   {
    "fieldname": "planned_end_time",
    "fieldtype": "Datetime",
-   "label": "Planned End Time"
+   "label": "Planned End Time",
+   "read_only": 1
   },
   {
    "fieldname": "planned_operating_cost",
@@ -146,7 +148,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-06-02 10:43:38.437975",
+ "modified": "2026-06-23 17:13:45.837618",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Order Operation",

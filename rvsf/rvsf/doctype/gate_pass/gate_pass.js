@@ -51,11 +51,21 @@ frappe.ui.form.on("Gate Pass", {
             });
         }
     if (frm.doc.docstatus === 1 && frm.doc.status === "Valid" && frm.doc.is_entry_pass_issued){
-            frm.add_custom_button(__("Verify Documents"), function () {
-                frappe.model.open_mapped_doc({
-                    method: "rvsf.rvsf.doctype.gate_pass.gate_pass.verify_documents",
-                    frm: frm
-                });
+            frappe.call({
+                method: "rvsf.rvsf.doctype.gate_pass.gate_pass.check_physical_verification",
+                args: {
+                    gate_pass: frm.doc.name
+                },
+                callback: function(r) {
+                    if (!r.message) {
+                        frm.add_custom_button(__("Verify Documents"), function () {
+                            frappe.model.open_mapped_doc({
+                                method: "rvsf.rvsf.doctype.gate_pass.gate_pass.verify_documents",
+                                frm: frm
+                            });
+                        });
+                    }
+                }
             });
         }
     },
@@ -84,13 +94,6 @@ frappe.ui.form.on("Gate Pass", {
         }
 });
 function show_slot_dialog(frm, slots) {
-    let html = `
-        <div style="
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
-        ">
-    `;
     if (slots.length === 0) {
         frappe.msgprint({
             title: __("Holiday"),
@@ -99,39 +102,108 @@ function show_slot_dialog(frm, slots) {
         });
         return;
     }
+
+    let slots_html = "";
+
     slots.forEach(slot => {
-        let disabled = slot.available ? "" : "disabled";
-        let color = slot.available
-            ? "#28a745"
-            : "#dc3545";
-        let label = `
-            ${slot.start_time} - ${slot.end_time}
-            <br>
-            ${slot.booked}/${slot.capacity}
-        `;
-        html += `
+        const is_available = slot.available;
+        const disabled_attr = is_available ? "" : "disabled";
+        const fill_pct = slot.capacity > 0
+            ? Math.round((slot.booked / slot.capacity) * 100)
+            : 100;
+
+        slots_html += `
             <button
-                class="slot-btn btn btn-sm"
+                class="slot-btn"
                 data-start="${slot.start_time}"
                 data-end="${slot.end_time}"
+                ${disabled_attr}
                 style="
-                    border:none;
-                    padding:15px;
-                    border-radius:10px;
-                    background:${color};
-                    color:white;
-                    min-width:160px;
-                    cursor:pointer;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 6px;
+                    padding: 10px 12px;
+                    border-radius: 8px;
+                    border: 1px solid ${is_available ? "#d1d5db" : "#e5e7eb"};
+                    background: ${is_available ? "#ffffff" : "#f9fafb"};
+                    color: inherit;
+                    min-width: 140px;
+                    cursor: ${is_available ? "pointer" : "not-allowed"};
+                    opacity: ${is_available ? "1" : "0.5"};
+                    text-align: left;
+                    transition: border-color 0.15s, background 0.15s;
                 "
-                ${disabled}
+                onmouseover="${is_available ? "this.style.borderColor='#6b7280'; this.style.background='#f9fafb';" : ""}"
+                onmouseout="${is_available ? "this.style.borderColor='#d1d5db'; this.style.background='#ffffff';" : ""}"
             >
-                ${label}
+                <span style="
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #111827;
+                    letter-spacing: 0.01em;
+                ">
+                    ${slot.start_time} &ndash; ${slot.end_time}
+                </span>
+                <span style="
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 11px;
+                    color: #6b7280;
+                ">
+                    <span style="
+                        width: 36px;
+                        height: 3px;
+                        background: #e5e7eb;
+                        border-radius: 2px;
+                        overflow: hidden;
+                        display: inline-block;
+                        vertical-align: middle;
+                    ">
+                        <span style="
+                            display: block;
+                            height: 100%;
+                            width: ${fill_pct}%;
+                            border-radius: 2px;
+                            background: ${is_available ? "#6b7280" : "#d1d5db"};
+                        "></span>
+                    </span>
+                    ${slot.booked}/${slot.capacity} booked
+                </span>
             </button>
         `;
     });
-    html += `</div>`;
+
+    const html = `
+        <div style="padding: 4px 0 8px;">
+            <div style="
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 16px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid #f3f4f6;
+            ">
+                <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:#6b7280;">
+                    <span style="width:8px;height:8px;border-radius:50%;background:#6b7280;display:inline-block;"></span>
+                    Available
+                </span>
+                <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:#9ca3af;">
+                    <span style="width:8px;height:8px;border-radius:50%;background:#d1d5db;display:inline-block;"></span>
+                    Fully booked
+                </span>
+            </div>
+            <div style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            ">${slots_html}</div>
+        </div>
+    `;
+
     let dialog = new frappe.ui.Dialog({
-        title: "Select Time Slot",
+        title: __("Select Time Slot"),
         fields: [
             {
                 fieldtype: "HTML",
@@ -139,9 +211,11 @@ function show_slot_dialog(frm, slots) {
             }
         ]
     });
+
     dialog.show();
     dialog.fields_dict.slot_html.wrapper.innerHTML = html;
-    $(dialog.fields_dict.slot_html.wrapper).on("click", ".slot-btn", function() {
+
+    $(dialog.fields_dict.slot_html.wrapper).on("click", ".slot-btn", function () {
         let start = $(this).data("start");
         let end = $(this).data("end");
         frm.set_value("start_time", start);

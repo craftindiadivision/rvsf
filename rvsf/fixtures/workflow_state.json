@@ -12,24 +12,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-16 16:18:56.425938",
-  "name": "Draft",
-  "style": "",
-  "workflow_state_name": "Draft"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
-  "modified": "2026-05-21 14:58:37.949176",
-  "name": "Issued",
-  "style": "",
-  "workflow_state_name": "Issued"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2026-05-21 14:58:01.741055",
   "name": "Valid",
   "style": "",
@@ -66,6 +48,42 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2026-05-14 17:32:58.844876",
+  "name": "Sent",
+  "style": "",
+  "workflow_state_name": "Sent"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-06-15 12:19:49.879691",
+  "name": "Verified",
+  "style": "",
+  "workflow_state_name": "Verified"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-06-15 12:19:55.368978",
+  "name": "Authorised",
+  "style": "",
+  "workflow_state_name": "Authorised"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-05-21 14:58:37.949176",
+  "name": "Issued",
+  "style": "",
+  "workflow_state_name": "Issued"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2026-05-14 17:34:29.457514",
   "name": "Cancelled",
   "style": "",
@@ -75,9 +93,45 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-05-14 17:32:58.844876",
-  "name": "Sent",
+  "modified": "2026-06-15 12:19:41.738181",
+  "name": "Inspected",
   "style": "",
-  "workflow_state_name": "Sent"
+  "workflow_state_name": "Inspected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-06-16 16:52:22.140750",
+  "name": "Under Valuation",
+  "style": "",
+  "workflow_state_name": "Under Valuation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 16:18:56.425938",
+  "name": "Draft",
+  "style": "",
+  "workflow_state_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-06-16 16:52:52.430537",
+  "name": "Valuation Approved",
+  "style": "",
+  "workflow_state_name": "Valuation Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-06-16 16:21:42.605822",
+  "name": "Submitted",
+  "style": "",
+  "workflow_state_name": "Submitted"
  }
 ]

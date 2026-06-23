@@ -43,8 +43,11 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Supplier Quotation": "public/js/supplier_quotation.js"}
-doctype_js = {"Purchase Order": "public/js/purchase_order.js"}
+doctype_js = {
+    "Supplier Quotation": "public/js/supplier_quotation.js",
+    "Purchase Order": "public/js/purchase_order.js",
+    "Purchase Receipt": "public/js/purchase_receipt.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -149,6 +152,9 @@ doctype_js = {"Purchase Order": "public/js/purchase_order.js"}
 doc_events = {
     "Stock Entry": {
         "on_cancel": "rvsf.rvsf.events.stock_entry.on_cancel"
+    },
+    "Purchase Receipt": {
+        "validate": "rvsf.rvsf.events.purchase_receipt.validate_purchase_receipt"
     }
 }
 
@@ -292,7 +298,16 @@ fixtures = [
                     "Supplier Quotation-custom_reason",
                     "Item-custom_ownership_type",
                     "Stock Entry-custom_execution_order",
-                    "Operation-custom_is_recovery_operation"
+                    "Operation-custom_is_recovery_operation",
+                    "Purchase Order-custom_purchase_lead",
+                    "Purchase Receipt-custom_purchase_lead",
+                    "Purchase Receipt-custom_cod",
+                    "Purchase Receipt-custom_cod_details",
+                    "Purchase Receipt-custom_certificate_of_deposit",
+                    "Purchase Receipt-custom_gross_weight",
+                    "Purchase Receipt-custom_weight_details",
+                    "Purchase Receipt-custom_rc_weight",
+                    "Purchase Receipt-custom_get_weight_details"
                 ]
             ]
         ]
@@ -309,7 +324,12 @@ fixtures = [
                     "Vehicle-last_odometer-reqd",
                     "Vehicle-uom-default",
                     "Stock Entry-main-field_order",
-                    "Operation-main-field_order"
+                    "Operation-main-field_order",
+                    "Purchase Order-main-field_order",
+                    "Purchase Receipt-main-field_order",
+                    "Purchase Order-main-links_order",
+                    "Purchase Receipt-main-links_order"
+                    
                 ]
             ]
         ]
@@ -318,7 +338,8 @@ fixtures = [
     "dt": "Workflow State",
     "filters": [
         ["name", "in", [
-            "Draft","Sent","Revised","Rejected","Accepted","Cancelled","Issued","Valid","Invalid"
+            "Draft","Sent","Revised","Rejected","Accepted","Cancelled","Issued","Valid","Invalid","Inspected","Verified", "Authorised","Submitted", "Under Valuation", 
+            "Valuation Approved", 
         ]]
     ]
     },
@@ -326,7 +347,7 @@ fixtures = [
     "dt": "Workflow Action Master",
     "filters": [
         ["name", "in", [
-            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid"
+            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid","Inspect","Verify","Authorise", "Submit","Send For Valuation","Approve Valuation"
         ]]
     ]
     },

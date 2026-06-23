@@ -107,10 +107,19 @@ frappe.ui.form.on("Execution Order", {
         (frm.doc.operations || []).every(
             row => row.status === "Completed"
         );
+        let editable = frm.doc.workflow_state === "Under Valuation";
 
+        frm.fields_dict.recovered_parts.grid.update_docfield_property(
+            "rate",
+            "read_only",
+            editable ? 0 : 1
+        );
+
+        frm.refresh_field("recovered_parts");
         if (
             frm.doc.docstatus === 1 &&
-            all_operations_completed && frm.doc.status === "Work In Progress"
+            all_operations_completed && frm.doc.status === "Work In Progress" &&
+            frm.doc.workflow_state === "Valuation Approved"
         ) {
             frm.add_custom_button(__("Finish"), () => {
                 frm.trigger("finish_execution_order");

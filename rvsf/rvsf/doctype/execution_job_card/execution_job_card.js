@@ -45,7 +45,7 @@ frappe.ui.form.on("Execution Job Card", {
         // PAUSE JOB
         if (
             frm.doc.docstatus === 0 &&
-            frm.doc.status === "Work In Progress"
+            frm.doc.status === "Work In Progress" && !frm.doc.actual_end_date
         ) {
 
             frm.add_custom_button(__("Pause Job"), async function () {
@@ -64,7 +64,7 @@ frappe.ui.form.on("Execution Job Card", {
         // FINISH JOB
         if (
             frm.doc.docstatus === 0 &&
-            frm.doc.status === "Work In Progress"
+            frm.doc.status === "Work In Progress" && !frm.doc.actual_end_date
         ) {
 
             frm.add_custom_button(__("Finish Job"), function () {
@@ -152,13 +152,11 @@ frappe.ui.form.on("Execution Job Card", {
     },
     setup_timer(frm) {
 
-        // clear old timer
         if (frm.timer_interval) {
             clearInterval(frm.timer_interval);
         }
 
-        // remove existing timer
-        frm.page.wrapper.find(".custom-execution-timer").remove();
+        frm.toolbar.page.inner_toolbar.find(".stopwatch").remove();
 
         if (frm.doc.status !== "Work In Progress") {
             return;
@@ -178,26 +176,25 @@ frappe.ui.form.on("Execution Job Card", {
 
         let latest_log = active_logs[0];
 
-        let timer_html = `
-            <div class="custom-execution-timer"
+        const timer_html = `
+            <div class="stopwatch"
                 style="
-                    padding: 10px 15px;
-                    background: #f5f7fa;
-                    border-radius: 8px;
-                    margin-bottom: 15px;
-                    font-size: 18px;
-                    font-weight: bold;
-                    color: #2490ef;
+                    font-weight:bold;
+                    margin:0px 13px 0px 2px;
+                    color:#545454;
+                    font-size:18px;
                     display:inline-block;
+                    vertical-align:text-bottom;
                 ">
-
-                ⏱ Running Time :
-                <span id="execution-job-timer">00:00:00</span>
-
+                <span class="hours">00</span>
+                <span class="colon">:</span>
+                <span class="minutes">00</span>
+                <span class="colon">:</span>
+                <span class="seconds">00</span>
             </div>
         `;
 
-        $(timer_html).prependTo(frm.page.main);
+        let section = frm.toolbar.page.add_inner_message(timer_html);
 
         function update_timer() {
 
@@ -210,13 +207,17 @@ frappe.ui.form.on("Execution Job Card", {
                 Math.floor(duration.asHours())
             ).padStart(2, '0');
 
-            let minutes = String(duration.minutes()).padStart(2, '0');
+            let minutes = String(
+                duration.minutes()
+            ).padStart(2, '0');
 
-            let seconds = String(duration.seconds()).padStart(2, '0');
+            let seconds = String(
+                duration.seconds()
+            ).padStart(2, '0');
 
-            $("#execution-job-timer").text(
-                `${hours}:${minutes}:${seconds}`
-            );
+            $(section).find(".hours").text(hours);
+            $(section).find(".minutes").text(minutes);
+            $(section).find(".seconds").text(seconds);
         }
 
         update_timer();
@@ -257,3 +258,23 @@ frappe.ui.form.on("Execution Job Card", {
         });
     }
 });
+
+frappe.ui.form.on("Recovered Item", {
+    weight(frm, cdt, cdn) {
+        calculate_total_weight(frm);
+    },
+
+    recovered_items_remove(frm) {
+        calculate_total_weight(frm);
+    }
+});
+
+function calculate_total_weight(frm) {
+    let total = 0;
+
+    (frm.doc.recovered_items || []).forEach(row => {
+        total += flt(row.weight);
+    });
+
+    frm.set_value("total_weight", total);
+}

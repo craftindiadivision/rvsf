@@ -11,6 +11,7 @@
   "company",
   "naming_series",
   "supplier",
+  "physical_verification_check_list",
   "column_break_jkwy",
   "vehicle",
   "purchase_lead",
@@ -25,6 +26,10 @@
   "operations_section",
   "routing",
   "operations",
+  "recovered_parts_tab",
+  "recovered_parts_section",
+  "recovered_parts",
+  "total_weight",
   "configuration_tab",
   "time_section",
   "planned_start_date",
@@ -40,10 +45,7 @@
   "total_operating_cost",
   "more_info",
   "more_info_section",
-  "status",
-  "recovered_parts_tab",
-  "recovered_parts_section",
-  "recovered_parts"
+  "status"
  ],
  "fields": [
   {
@@ -105,7 +107,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Source Warehouse",
-   "options": "Warehouse"
+   "options": "Warehouse",
+   "reqd": 1
   },
   {
    "description": "Warehouse where final recovered products and processed materials are stored.",
@@ -260,7 +263,6 @@
    "label": "Recovered Parts"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "recovered_parts",
    "fieldtype": "Table",
    "label": "Recovered Parts",
@@ -271,6 +273,18 @@
    "fieldname": "more_info",
    "fieldtype": "Tab Break",
    "label": "More Info"
+  },
+  {
+   "fieldname": "physical_verification_check_list",
+   "fieldtype": "Link",
+   "label": "Physical Verification Check List",
+   "options": "Physical Verification"
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
@@ -286,7 +300,7 @@
    "link_fieldname": "execution_order"
   }
  ],
- "modified": "2026-06-02 11:25:15.838948",
+ "modified": "2026-06-17 18:18:46.833601",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Order",
@@ -311,5 +325,14 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Orange",
+   "title": "Work In Progress"
+  },
+  {
+   "color": "Green",
+   "title": "Completed"
+  }
+ ]
 }
