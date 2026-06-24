@@ -200,37 +200,43 @@
    "fieldname": "inspected_by",
    "fieldtype": "Link",
    "label": "Inspected By",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "inspected_by_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Inspected By (Name)"
+   "label": "Inspected By (Name)",
+   "read_only": 1
   },
   {
    "fieldname": "verified_by",
    "fieldtype": "Link",
    "label": "Verified By",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "verified_by_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Verified By (Name)"
+   "label": "Verified By (Name)",
+   "read_only": 1
   },
   {
    "fieldname": "authorized_by",
    "fieldtype": "Link",
    "label": "Authorized By",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "authorized_by_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Authorized By (Name)"
+   "label": "Authorized By (Name)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_zmjm",
@@ -299,7 +305,7 @@
    "link_fieldname": "physical_verification_check_list"
   }
  ],
- "modified": "2026-06-23 17:33:46.181321",
+ "modified": "2026-06-24 14:44:03.407487",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Physical Verification",

@@ -14,7 +14,11 @@
   "column_break_cwoe",
   "posting_date",
   "execution_order",
+  "vehicle_details_section",
   "vehicle",
+  "fuel_type",
+  "converted_fuel",
+  "converted_fuel_type",
   "operations_section",
   "operation",
   "source_warehouse",
@@ -23,6 +27,7 @@
   "is_recovery_operation",
   "workstation",
   "workstation_type",
+  "operation_type",
   "recovered_parts_tab",
   "recovered_parts_section",
   "recovered_parts_template",
@@ -260,7 +265,7 @@
    "options": "Recovered Parts Template"
   },
   {
-   "depends_on": "eval:doc.is_recovery_operation === 0",
+   "depends_on": "eval:doc.is_recovery_operation === 0 && doc.operation_type ===\"Weighing\"",
    "fieldname": "vehicle_photos_tab",
    "fieldtype": "Tab Break",
    "label": "Vehicle Details"
@@ -282,12 +287,14 @@
    "fieldname": "weight",
    "fieldtype": "Float",
    "label": "Weight",
+   "mandatory_depends_on": "eval:doc.operation_type === \"Weighing\"",
    "precision": "4"
   },
   {
    "fieldname": "total_weight",
    "fieldtype": "Float",
-   "label": "Total Weight"
+   "label": "Total Weight",
+   "read_only": 1
   },
   {
    "fieldname": "workstation",
@@ -300,13 +307,44 @@
    "fieldtype": "Link",
    "label": "Workstation Type",
    "options": "Workstation Type"
+  },
+  {
+   "fieldname": "operation_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Operation Type"
+  },
+  {
+   "depends_on": "eval:doc.operation_type === \"Depollution\"",
+   "fieldname": "fuel_type",
+   "fieldtype": "Data",
+   "label": "Fuel Type"
+  },
+  {
+   "fieldname": "vehicle_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Details"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.operation_type === \"Depollution\"",
+   "fieldname": "converted_fuel",
+   "fieldtype": "Check",
+   "label": "Converted Fuel"
+  },
+  {
+   "depends_on": "eval:doc.converted_fuel === 1",
+   "fieldname": "converted_fuel_type",
+   "fieldtype": "Select",
+   "label": "Converted Fuel Type",
+   "options": "\nPetrol\nDiesel\nCNG\nEV"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-24 11:34:16.281947",
+ "modified": "2026-06-24 14:26:55.071900",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Job Card",
