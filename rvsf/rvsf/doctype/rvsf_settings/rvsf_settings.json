@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-06-24 11:16:42.185090",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rvsf_settings_section",
+  "operation_type_mapping"
+ ],
+ "fields": [
+  {
+   "fieldname": "rvsf_settings_section",
+   "fieldtype": "Section Break",
+   "label": "RVSF Settings"
+  },
+  {
+   "fieldname": "operation_type_mapping",
+   "fieldtype": "Table",
+   "label": "Operation Type Mapping",
+   "options": "Operation Mapping"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-06-24 12:56:38.375191",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "RVSF Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

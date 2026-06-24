@@ -53,6 +53,15 @@ class ExecutionOrder(Document):
         for job_card in draft_job_cards:
             frappe.delete_doc("Execution Job Card", job_card, ignore_permissions=True)
 
+    def on_update_after_submit(self):
+        previous_state = self.get_doc_before_save()
+
+        if (
+            previous_state
+            and previous_state.workflow_state != "Under Valuation"
+            and self.workflow_state == "Under Valuation"
+        ):
+            self.validate_job_cards_before_valuation()
     def schedule_operations(self):
         for idx, row in enumerate(self.operations):
             self._set_operation_start_end_time(row, idx)
@@ -301,7 +310,11 @@ class ExecutionOrder(Document):
                     "time_in_mins": flt(operation.time),
                 }
             ]
-
+        settings = frappe.get_cached_doc("RVSF Settings")
+        operation_type_map = {
+            row.operation: row.operation_type
+            for row in settings.operation_type_mapping
+        }
         job_card = frappe.new_doc("Execution Job Card")
         job_card.operation = operation.operation
         job_card.execution_order = self.name
@@ -313,7 +326,18 @@ class ExecutionOrder(Document):
         job_card.sequence_id = operation.sequence_id
         job_card.hour_rate = operation.hour_rate
         job_card.expected_time_required_in_mins = flt(operation.time)
-
+        job_card.operation_type = operation_type_map.get(operation.operation)
+        if (
+            job_card.operation_type == "Depollution"
+            and self.purchase_lead
+            and frappe.db.exists("Purchase Lead", self.purchase_lead)
+        ):
+            job_card.fuel_type = frappe.db.get_value(
+                "Purchase Lead",
+                self.purchase_lead,
+                "fuel_type"
+            )
+            
         job_card.expected_start_date = scheduled_slots[0]["from_time"]
         job_card.expected_end_date   = scheduled_slots[-1]["to_time"]
 
@@ -371,7 +395,20 @@ class ExecutionOrder(Document):
             flt(self.planned_operating_cost)
             + flt(self.additional_operating_cost or 0)
         )
+    def validate_job_cards_before_valuation(self):
+        pending = frappe.get_all(
+            "Execution Job Card",
+            filters={
+                "execution_order": self.name,
+                "docstatus": 0
+            },
+            pluck="name"
+        )
 
+        if pending:
+            frappe.throw(
+                _("All Execution Job Cards must be submitted before sending for valuation.")
+            )
 @frappe.whitelist()
 def get_routing_details(routing):
     if not frappe.db.exists("Routing", routing):

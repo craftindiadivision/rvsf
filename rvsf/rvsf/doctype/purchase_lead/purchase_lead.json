@@ -366,7 +366,7 @@
   },
   {
    "fieldname": "aadhar_no",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Aadhar No"
   },
   {
@@ -400,7 +400,7 @@
    "link_fieldname": "purchase_lead"
   }
  ],
- "modified": "2026-06-23 17:51:28.254555",
+ "modified": "2026-06-24 14:36:18.500889",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",
