@@ -21,6 +21,8 @@
   "wip_warehouse",
   "column_break_wqgm",
   "is_recovery_operation",
+  "workstation",
+  "workstation_type",
   "recovered_parts_tab",
   "recovered_parts_section",
   "recovered_parts_template",
@@ -286,13 +288,25 @@
    "fieldname": "total_weight",
    "fieldtype": "Float",
    "label": "Total Weight"
+  },
+  {
+   "fieldname": "workstation",
+   "fieldtype": "Link",
+   "label": "Workstation",
+   "options": "Workstation"
+  },
+  {
+   "fieldname": "workstation_type",
+   "fieldtype": "Link",
+   "label": "Workstation Type",
+   "options": "Workstation Type"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-17 18:10:02.411282",
+ "modified": "2026-06-24 11:34:16.281947",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Job Card",
