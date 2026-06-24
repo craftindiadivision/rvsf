@@ -272,7 +272,7 @@ fixtures = [
     {
         "dt": "Workflow",
         "filters": [
-            ["name", "in", ["Supplier Quotation","Gate Pass"]]
+            ["name", "in", ["Supplier Quotation","Gate Pass","Physical Verification","Execution Order"]]
         ]
     },
     {
