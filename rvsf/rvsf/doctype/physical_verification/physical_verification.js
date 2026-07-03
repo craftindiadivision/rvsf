@@ -68,5 +68,26 @@ frappe.ui.form.on("Physical Verification", {
                     </div>
                 `);
             });
+    },
+    vehicle_condition_assessment_template(frm) {
+        if (!frm.doc.vehicle_condition_assessment_template) return;
+        frappe.call({
+            method: "rvsf.rvsf.doctype.physical_verification.physical_verification.get_vehicle_assessment_template",
+            args: {
+                template: frm.doc.vehicle_condition_assessment_template
+            },
+            callback(r) {
+                if (!r.message) return;
+
+                frm.clear_table("vehicle_condition_assessment");
+
+                r.message.forEach(item => {
+                    let row = frm.add_child("vehicle_condition_assessment");
+                    row.item = item.item_code
+                });
+
+                frm.refresh_field("vehicle_condition_assessment");
+            }
+        });
     }
 });

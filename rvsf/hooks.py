@@ -155,6 +155,10 @@ doc_events = {
     },
     "Purchase Receipt": {
         "validate": "rvsf.rvsf.events.purchase_receipt.validate_purchase_receipt"
+    },
+    "Purchase Order": {
+        "on_submit": "rvsf.rvsf.events.purchase_order.on_submit",
+        "on_cancel": "rvsf.rvsf.events.purchase_order.on_cancel"
     }
 }
 
@@ -272,7 +276,7 @@ fixtures = [
     {
         "dt": "Workflow",
         "filters": [
-            ["name", "in", ["Supplier Quotation","Gate Pass","Physical Verification","Execution Order"]]
+            ["name", "in", ["Supplier Quotation","Gate Pass","Physical Verification","Security Check"]]
         ]
     },
     {

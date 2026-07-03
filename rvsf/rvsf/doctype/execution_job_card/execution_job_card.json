@@ -28,6 +28,10 @@
   "workstation",
   "workstation_type",
   "operation_type",
+  "vehicle_photos_tab",
+  "vehicle_photos_section",
+  "vehicle_photos",
+  "weight",
   "recovered_parts_tab",
   "recovered_parts_section",
   "recovered_parts_template",
@@ -49,11 +53,7 @@
   "time_logs",
   "more_info_tab",
   "status",
-  "sequence_id",
-  "vehicle_photos_tab",
-  "vehicle_photos_section",
-  "vehicle_photos",
-  "weight"
+  "sequence_id"
  ],
  "fields": [
   {
@@ -234,7 +234,7 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval: doc.is_recovery_operation === 1",
+   "depends_on": "eval:doc.is_recovery_operation == 1",
    "fieldname": "recovered_parts_tab",
    "fieldtype": "Tab Break",
    "label": "Recovered Parts"
@@ -344,7 +344,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-24 14:26:55.071900",
+ "modified": "2026-07-01 15:58:24.421853",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Job Card",

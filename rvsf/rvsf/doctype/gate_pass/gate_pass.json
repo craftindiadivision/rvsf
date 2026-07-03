@@ -18,6 +18,7 @@
   "posting_time",
   "purchase_lead",
   "purchase_order",
+  "application_type",
   "is_entry_pass_issued",
   "vehicle_information_section",
   "vehicle",
@@ -87,7 +88,8 @@
    "fieldname": "purchase_order",
    "fieldtype": "Link",
    "label": "Purchase Order",
-   "options": "Purchase Order"
+   "options": "Purchase Order",
+   "read_only": 1
   },
   {
    "fieldname": "naming_series",
@@ -209,6 +211,13 @@
    "fieldtype": "Link",
    "label": "Cost Center",
    "options": "Cost Center"
+  },
+  {
+   "fetch_from": "purchase_lead.application_type",
+   "fieldname": "application_type",
+   "fieldtype": "Data",
+   "label": "Application Type",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
@@ -224,7 +233,7 @@
    "link_fieldname": "gate_pass_no"
   }
  ],
- "modified": "2026-06-23 17:32:35.787980",
+ "modified": "2026-07-01 12:14:58.460885",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Gate Pass",

@@ -7,15 +7,28 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "company",
+  "service_type",
   "entry_type",
-  "cost_center",
   "column_break_jsyz",
   "gate_pass_id",
+  "cost_center",
+  "vehicle_and_visitor_informations",
   "vehicle",
-  "visitor_details_section",
   "visitor_name",
-  "column_break_pani",
   "contact_no",
+  "is_recovery_vehicle_used",
+  "recovery_vehicle_number",
+  "purpose_of_visit",
+  "has_co_visitors",
+  "column_break_pani",
+  "vehicle_photo",
+  "visitor_photo",
+  "id_card",
+  "has_visitor_arrived_in_another_vehicle",
+  "visitor_vehicle_number",
+  "vehicle_occupants_details_section",
+  "vehicle_occupants",
   "movement_tracking_section",
   "entry_time",
   "entry_approved_by",
@@ -37,20 +50,21 @@
    "fieldname": "gate_pass_id",
    "fieldtype": "Link",
    "label": "Gate Pass ID",
-   "options": "Gate Pass"
+   "options": "Gate Pass",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.service_type === \"RVSF Services\"",
    "fieldname": "entry_type",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Entry Type",
-   "options": "Dismantling\nEnquiry\nVisitor",
-   "reqd": 1
+   "options": "\nDismantling\nEnquiry\nVisitor"
   },
   {
    "fieldname": "vehicle",
-   "fieldtype": "Link",
-   "label": "Vehicle ",
+   "fieldtype": "Data",
+   "label": "Vehicle Number",
    "mandatory_depends_on": "eval:doc.gate_pass_id",
    "options": "Item"
   },
@@ -101,11 +115,6 @@
    "label": "Contact No"
   },
   {
-   "fieldname": "visitor_details_section",
-   "fieldtype": "Section Break",
-   "label": "Visitor Details"
-  },
-  {
    "fieldname": "column_break_pani",
    "fieldtype": "Column Break"
   },
@@ -132,12 +141,95 @@
   {
    "fieldname": "column_break_jsyz",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_type",
+   "fieldtype": "Select",
+   "label": "Service Type",
+   "options": "\nRVSF Services\nSILK Other Services",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vehicle_and_visitor_informations",
+   "fieldtype": "Section Break",
+   "label": "Vehicle & Visitor Informations"
+  },
+  {
+   "fieldname": "vehicle_photo",
+   "fieldtype": "Attach",
+   "label": "Vehicle Photo"
+  },
+  {
+   "fieldname": "id_card",
+   "fieldtype": "Attach",
+   "label": "ID Card"
+  },
+  {
+   "fieldname": "visitor_photo",
+   "fieldtype": "Attach",
+   "label": "Visitor Photo"
+  },
+  {
+   "depends_on": "eval:doc.has_co_visitors === 1",
+   "fieldname": "vehicle_occupants_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Occupants Details"
+  },
+  {
+   "depends_on": "eval:doc.has_co_visitors === 1",
+   "fieldname": "vehicle_occupants",
+   "fieldtype": "Table",
+   "label": "Vehicle Occupants",
+   "options": "Vehicle Occupants"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_co_visitors",
+   "fieldtype": "Check",
+   "label": "Has Co-Visitors"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.entry_type === \"Dismantling\"",
+   "fieldname": "is_recovery_vehicle_used",
+   "fieldtype": "Check",
+   "label": "Is Recovery Vehicle Used?"
+  },
+  {
+   "depends_on": "eval:doc.is_recovery_vehicle_used === 1",
+   "fieldname": "recovery_vehicle_number",
+   "fieldtype": "Data",
+   "label": "Recovery Vehicle Number"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.entry_type === \"Dismantling\"",
+   "fieldname": "has_visitor_arrived_in_another_vehicle",
+   "fieldtype": "Check",
+   "label": "Has Visitor Arrived in Another Vehicle"
+  },
+  {
+   "depends_on": "eval:doc.has_visitor_arrived_in_another_vehicle === 1",
+   "fieldname": "visitor_vehicle_number",
+   "fieldtype": "Data",
+   "label": "Visitor Vehicle Number"
+  },
+  {
+   "fieldname": "purpose_of_visit",
+   "fieldtype": "Small Text",
+   "label": "Purpose Of Visit"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-15 17:33:27.977369",
+ "modified": "2026-07-01 12:53:56.536927",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Entry Pass",

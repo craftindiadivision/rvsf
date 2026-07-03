@@ -10,11 +10,16 @@
   "amended_from",
   "naming_series",
   "company",
+  "application_type",
+  "entry_pass",
+  "column_break_ivmm",
   "status",
   "cost_center",
+  "is_vehicle_weighment_is_completed",
   "vehicle_scrap_form_section",
-  "vehicle_registration_no",
+  "application_no",
   "column_break_xekl",
+  "vehicle_registration_no",
   "vehicle_details_section",
   "maker_name",
   "chassis_no",
@@ -123,8 +128,9 @@
   },
   {
    "fieldname": "vehicle_category",
-   "fieldtype": "Data",
-   "label": "Vehicle Category"
+   "fieldtype": "Link",
+   "label": "Vehicle Category",
+   "options": "Vehicle Category"
   },
   {
    "fieldname": "chassis_no",
@@ -153,8 +159,9 @@
   },
   {
    "fieldname": "norms",
-   "fieldtype": "Data",
-   "label": "Norms"
+   "fieldtype": "Select",
+   "label": "Norms",
+   "options": "\nAvailable\nNot Available"
   },
   {
    "fieldname": "column_break_kqsz",
@@ -204,14 +211,16 @@
   },
   {
    "fieldname": "state",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "State",
+   "options": "State",
    "reqd": 1
   },
   {
    "fieldname": "district",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "District",
+   "options": "District",
    "reqd": 1
   },
   {
@@ -239,21 +248,21 @@
    "label": "Vehicle Check"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "no_hypothecation",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "No Hypothecation"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "ncrb_clearance",
    "fieldtype": "Check",
    "in_list_view": 1,
    "label": "NCRB Clearance"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "not_black_listed",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -308,8 +317,9 @@
   },
   {
    "fieldname": "vehicle_to_be_deposited_by",
-   "fieldtype": "Data",
-   "label": "Vehicle To be Deposited By"
+   "fieldtype": "Select",
+   "label": "Vehicle To be Deposited By",
+   "options": "\nVehicle Owner\nAuthorized Person"
   },
   {
    "default": "Open",
@@ -362,7 +372,8 @@
    "fieldname": "fuel_type",
    "fieldtype": "Select",
    "label": "Fuel Type",
-   "options": "\nPetrol\nDiesel\nCNG\nEV"
+   "options": "\nPetrol\nDiesel\nCNG\nEV",
+   "reqd": 1
   },
   {
    "fieldname": "aadhar_no",
@@ -372,8 +383,39 @@
   {
    "fieldname": "rc_weight",
    "fieldtype": "Float",
-   "label": "RC Weight",
+   "label": "Unladen Weight (RC)",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ivmm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "application_no",
+   "fieldtype": "Data",
+   "label": "Application Number (V-Scrap)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "application_type",
+   "fieldtype": "Select",
+   "label": "Application Type",
+   "options": "\nDirect Customer\nQuotation Wise",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.application_type === \"Direct Customer\"",
+   "fieldname": "entry_pass",
+   "fieldtype": "Link",
+   "label": "Entry Pass",
+   "options": "Entry Pass"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_vehicle_weighment_is_completed",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is vehicle weighment is completed"
   }
  ],
  "grid_page_length": 50,
@@ -400,7 +442,7 @@
    "link_fieldname": "purchase_lead"
   }
  ],
- "modified": "2026-06-24 14:36:18.500889",
+ "modified": "2026-07-02 16:09:58.454419",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",

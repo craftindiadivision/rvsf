@@ -114,6 +114,7 @@
    "description": "Warehouse where final recovered products and processed materials are stored.",
    "fieldname": "fg_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Target Warehouse",
    "options": "Warehouse"
   },
@@ -121,6 +122,7 @@
    "description": "This is a location where operations are executed.\n",
    "fieldname": "wip_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Work-In-Progress Warehouse",
    "options": "Warehouse"
   },
@@ -128,6 +130,7 @@
    "description": "This is a location where scraped materials are stored.\n",
    "fieldname": "scrap_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Scrap Warehouse",
    "options": "Warehouse"
   },
@@ -257,7 +260,6 @@
    "options": "Execution Order Operation"
   },
   {
-   "depends_on": "eval:doc.is_recovery_operation === 1",
    "fieldname": "recovered_parts_tab",
    "fieldtype": "Tab Break",
    "label": "Recovered Parts"
@@ -305,7 +307,7 @@
    "link_fieldname": "execution_order"
   }
  ],
- "modified": "2026-06-24 14:46:34.363369",
+ "modified": "2026-06-26 09:49:25.598531",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Order",

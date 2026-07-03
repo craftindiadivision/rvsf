@@ -15,6 +15,8 @@ class ExecutionJobCard(Document):
 		if self.status != "Open":
 			self.sync_operation_status()
 	def on_submit(self):
+		if  self.weight <= 0 and self.operation_type == "Weighing":
+			frappe.throw("Please add weight of the vehicele before submitting this Job Card.")
 		if not self.time_logs:
 			frappe.throw(
 				"Please start and complete the operation before submitting this Job Card."
@@ -29,13 +31,14 @@ class ExecutionJobCard(Document):
 		self.map_recovered_parts_to_execution_order()
 		self.update_execution_order_status()
 		self.check_recovered_parts()
-		
+		self.update_purchase_lead_with_weighment()
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
 		self.sync_operation_actuals()
 		self.remove_recovered_parts_from_execution_order()
 		self.update_execution_order_status()
 		self.update_execution_order_actuals()
+		self.remove_purchase_lead_weighment_status()
 	def on_trash(self):
 		self.reset_operation_status()
 	def update_job_status(self):
@@ -303,6 +306,44 @@ class ExecutionJobCard(Document):
 			flt(row.weight)
 			for row in self.recovered_parts
 		)
+	def update_purchase_lead_with_weighment(self):
+		if self.operation_type != "Weighing":
+			return
+		if not self.execution_order:
+			return
+
+		execution_order = frappe.get_doc(
+			"Execution Order",
+			self.execution_order
+		)
+		if not execution_order.purchase_lead:
+			return
+		purchase_lead = frappe.get_doc(
+			"Purchase Lead",
+			execution_order.purchase_lead
+		)
+		if self.operation_type == "Weighing":
+			purchase_lead.is_vehicle_weighment_is_completed = 1
+			purchase_lead.save(ignore_permissions=True)
+	def remove_purchase_lead_weighment_status(self):
+		if self.operation_type != "Weighing":
+			return
+		if not self.execution_order:
+			return
+
+		execution_order = frappe.get_doc(
+			"Execution Order",
+			self.execution_order
+		)
+		if not execution_order.purchase_lead:
+			return
+		purchase_lead = frappe.get_doc(
+			"Purchase Lead",
+			execution_order.purchase_lead
+		)
+		if self.operation_type == "Weighing":
+			purchase_lead.is_vehicle_weighment_is_completed = 0
+			purchase_lead.save(ignore_permissions=True)
 @frappe.whitelist()
 def start_job(docname, employees=None):
     import json

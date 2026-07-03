@@ -107,13 +107,13 @@ frappe.ui.form.on("Execution Order", {
         (frm.doc.operations || []).every(
             row => row.status === "Completed"
         );
-        let editable = frm.doc.workflow_state === "Under Valuation";
+        // let editable = frm.doc.workflow_state === "Under Valuation";
 
-        frm.fields_dict.recovered_parts.grid.update_docfield_property(
-            "rate",
-            "read_only",
-            editable ? 0 : 1
-        );
+        // frm.fields_dict.recovered_parts.grid.update_docfield_property(
+        //     "rate",
+        //     "read_only",
+        //     editable ? 0 : 1
+        // );
 
         frm.refresh_field("recovered_parts");
         if (

@@ -94,14 +94,13 @@ def validate_purchase_order_for_receipt(purchase_order_from_item):
 
 @frappe.whitelist()
 def can_create_cod(purchase_receipt):
-    # Check if COD already exists
+    # COD already created
     if frappe.db.exists(
         "Certificate Of Deposit",
         {"purchase_receipt": purchase_receipt}
     ):
         return False
 
-    # Find Purchase Invoice against this Purchase Receipt
     purchase_invoice = frappe.db.get_value(
         "Purchase Invoice Item",
         {"purchase_receipt": purchase_receipt},
@@ -111,15 +110,23 @@ def can_create_cod(purchase_receipt):
     if not purchase_invoice:
         return False
 
-    # Check invoice status
-    invoice_status = frappe.db.get_value(
+    if frappe.db.get_value(
         "Purchase Invoice",
         purchase_invoice,
         "status"
+    ) == "Paid":
+        return True
+
+    payment_request = frappe.db.exists(
+        "Payment Request",
+        {
+            "reference_doctype": "Purchase Invoice",
+            "reference_name": purchase_invoice,
+            "docstatus": 1
+        }
     )
 
-    return invoice_status == "Paid"
-
+    return bool(payment_request)
 @frappe.whitelist()
 def make_cod(source_name, target_doc=None):
 
@@ -159,7 +166,6 @@ def get_weight_details(purchase_lead):
             purchase_lead,
             "rc_weight"
         ) or 0
-        print(rc_weight,5555555555555555555555555555555555555)
         execution_order = frappe.db.get_value(
             "Execution Order",
             {"purchase_lead": purchase_lead},

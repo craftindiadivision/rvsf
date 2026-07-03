@@ -1,0 +1,210 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-07-01 12:52:42.065291",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "general_information_section",
+  "naming_series",
+  "company",
+  "inspection_date_time",
+  "vehicle_no",
+  "supplier",
+  "chassis_no",
+  "rc_copy",
+  "column_break_nnnu",
+  "gate_pass",
+  "entry_pass",
+  "purchase_lead",
+  "purchase_order",
+  "cost_center",
+  "address_proof",
+  "inspector_id",
+  "inspector",
+  "physical_and_security_verification_checklist_yes_no",
+  "security_verification_checklist_template",
+  "security_verification_form",
+  "final_verdict_section",
+  "clear_for_yard_entry_",
+  "notes__rejection_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "vehicle_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vehicle No",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gate_pass",
+   "fieldtype": "Link",
+   "label": "Gate Pass ",
+   "options": "Gate Pass"
+  },
+  {
+   "fieldname": "entry_pass",
+   "fieldtype": "Link",
+   "label": "Entry Pass",
+   "options": "Entry Pass"
+  },
+  {
+   "fieldname": "rc_copy",
+   "fieldtype": "Attach",
+   "label": "RC Copy",
+   "read_only": 1
+  },
+  {
+   "fieldname": "address_proof",
+   "fieldtype": "Attach",
+   "label": "Address Proof",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_nnnu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "purchase_lead",
+   "fieldtype": "Link",
+   "label": "Purchase Lead",
+   "options": "Purchase Lead"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SC.-"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order",
+   "options": "Purchase Order"
+  },
+  {
+   "fieldname": "general_information_section",
+   "fieldtype": "Section Break",
+   "label": "General Information"
+  },
+  {
+   "default": "Now",
+   "fieldname": "inspection_date_time",
+   "fieldtype": "Date",
+   "label": "Inspection Date & Time"
+  },
+  {
+   "fieldname": "chassis_no",
+   "fieldtype": "Data",
+   "label": "Chassis No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspector_id",
+   "fieldtype": "Link",
+   "label": "Inspector ID",
+   "options": "User"
+  },
+  {
+   "fetch_from": "inspector_id.full_name",
+   "fieldname": "inspector",
+   "fieldtype": "Data",
+   "label": "Inspector"
+  },
+  {
+   "fieldname": "physical_and_security_verification_checklist_yes_no",
+   "fieldtype": "Section Break",
+   "label": "Physical & Security Verification Checklist (Yes/No)"
+  },
+  {
+   "fieldname": "security_verification_form",
+   "fieldtype": "Table",
+   "label": "Security Verification Form",
+   "options": "Security Verification Form"
+  },
+  {
+   "fieldname": "security_verification_checklist_template",
+   "fieldtype": "Link",
+   "label": "Security Verification Checklist Template",
+   "options": "Security Verification Checklist Template"
+  },
+  {
+   "fieldname": "final_verdict_section",
+   "fieldtype": "Section Break",
+   "label": "Final Verdict"
+  },
+  {
+   "default": "0",
+   "fieldname": "clear_for_yard_entry_",
+   "fieldtype": "Check",
+   "label": "Clear For Yard Entry ?",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes__rejection_reason",
+   "fieldtype": "Small Text",
+   "label": "Notes / Rejection Reason"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Security Check",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-07-03 14:12:15.959244",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Security Check",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

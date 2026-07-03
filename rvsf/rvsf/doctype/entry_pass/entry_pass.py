@@ -7,8 +7,10 @@ from frappe.model.document import Document
 
 class EntryPass(Document):
 	def validate(self):
+		if not self.gate_pass_id:
+			return
 		gate_pass = self.gate_pass_id
-		exist = frappe.db.exists("Entry Pass", {"gate_pass_id": gate_pass})
+		exist = frappe.db.exists("Entry Pass", {"gate_pass_id": gate_pass, "name": ["!=", self.name]})
 		if exist:
 			frappe.throw("An Entry Pass already exists for the selected Gate Pass.")
 	def after_insert(self):

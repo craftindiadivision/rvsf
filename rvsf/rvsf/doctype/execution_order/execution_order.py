@@ -33,12 +33,34 @@ class ExecutionOrder(Document):
     
     def validate(self):
         self.status = "Draft"
-
+        if self.purchase_order :
+            if frappe.db.exists({
+                "doctype": "Execution Order",
+                "purchase_order": self.purchase_order,
+                "name": ["!=", self.name]
+            }):
+                frappe.throw(_("An Execution Order already exists for this Purchase Order."))
+        if self.purchase_lead:
+            if frappe.db.exists({
+                "doctype": "Execution Order",
+                "purchase_lead": self.purchase_lead,
+                "name": ["!=", self.name]
+            }):
+                frappe.throw(_("An Execution Order already exists for this Purchase Lead."))
+        if self.vehicle:
+            if frappe.db.exists({
+                "doctype": "Execution Order",
+                "vehicle": self.vehicle,
+                "name": ["!=", self.name]
+            }):
+                frappe.throw(_("An Execution Order already exists for this Vehicle."))
     def before_save(self):
         if self.planned_start_date and self.get("operations"):
             self.schedule_operations()
 
     def on_submit(self):
+        if not self.routing or not self.operations:
+            frappe.throw("Routing and operations are required to submit the Execution Order.")
         self.db_set("status", "Submitted")
         for operation in self.operations:
             self.create_execution_job_card(operation)
