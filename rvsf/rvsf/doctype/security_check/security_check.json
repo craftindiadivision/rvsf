@@ -14,6 +14,8 @@
   "supplier",
   "chassis_no",
   "rc_copy",
+  "inspector_id",
+  "inspector",
   "column_break_nnnu",
   "gate_pass",
   "entry_pass",
@@ -21,8 +23,6 @@
   "purchase_order",
   "cost_center",
   "address_proof",
-  "inspector_id",
-  "inspector",
   "physical_and_security_verification_checklist_yes_no",
   "security_verification_checklist_template",
   "security_verification_form",
@@ -35,6 +35,7 @@
   {
    "fieldname": "company",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Company",
    "options": "Company"
   },
@@ -77,6 +78,7 @@
   {
    "fieldname": "cost_center",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Cost Center",
    "options": "Cost Center"
   },
@@ -102,7 +104,8 @@
    "fieldname": "purchase_order",
    "fieldtype": "Link",
    "label": "Purchase Order",
-   "options": "Purchase Order"
+   "options": "Purchase Order",
+   "read_only": 1
   },
   {
    "fieldname": "general_information_section",
@@ -112,12 +115,14 @@
   {
    "default": "Now",
    "fieldname": "inspection_date_time",
-   "fieldtype": "Date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "Inspection Date & Time"
   },
   {
    "fieldname": "chassis_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Chassis No",
    "reqd": 1
   },
@@ -125,13 +130,16 @@
    "fieldname": "inspector_id",
    "fieldtype": "Link",
    "label": "Inspector ID",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fetch_from": "inspector_id.full_name",
    "fieldname": "inspector",
    "fieldtype": "Data",
-   "label": "Inspector"
+   "in_list_view": 1,
+   "label": "Inspector",
+   "read_only": 1
   },
   {
    "fieldname": "physical_and_security_verification_checklist_yes_no",
@@ -159,6 +167,7 @@
    "default": "0",
    "fieldname": "clear_for_yard_entry_",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Clear For Yard Entry ?",
    "read_only": 1
   },
@@ -182,7 +191,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-07-03 14:12:15.959244",
+ "modified": "2026-07-09 13:53:39.060190",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Security Check",

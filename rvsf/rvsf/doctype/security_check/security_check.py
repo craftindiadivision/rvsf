@@ -123,3 +123,4 @@ def set_inspector(docname):
 
     if doc.workflow_state == "Inspected" and not doc.inspector_id:
         doc.db_set("inspector_id", frappe.session.user, update_modified=False)
+        doc.db_set("inspector", frappe.get_value("User", frappe.session.user, "full_name"), update_modified=False)

@@ -46,7 +46,8 @@
   {
    "fieldname": "cod_document",
    "fieldtype": "Attach",
-   "label": "COD Document"
+   "label": "COD Document",
+   "reqd": 1
   },
   {
    "fieldname": "naming_series",
@@ -68,7 +69,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-02 15:00:42.833225",
+ "modified": "2026-07-09 13:07:13.825441",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Certificate Of Deposit",

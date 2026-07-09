@@ -7,6 +7,8 @@ from frappe.model.mapper import get_mapped_doc
 
 class PurchaseLead(Document):
 	def validate(self):
+		if frappe.db.exists("Purchase Lead", {"vehicle_registration_no": self.vehicle_registration_no, "name": ["!=", self.name]}):
+			frappe.throw("A Purchase Lead with this Vehicle Registration Number already exists.")
 		if self.no_hypothecation == 0 or self.ncrb_clearance == 0 or self.not_black_listed == 0:
 			frappe.throw(
         		"Please confirm that the vehicle has no hypothecation, has NCRB clearance, and is not blacklisted before proceeding."
@@ -14,7 +16,7 @@ class PurchaseLead(Document):
 		if self.vehicle_to_be_deposited_by == "Authorized Person":
 			authorized_letter = False
 			for doc in self.required_documents:
-				if doc.type_of_document == "Authorized Letter":
+				if doc.type_of_document == "Authorized Letter" and doc.view :
 					authorized_letter = True
 					break
 			if not authorized_letter:
@@ -24,7 +26,10 @@ class PurchaseLead(Document):
 				frappe.throw("Please add the Entry Pass before proceeding.")
 			if frappe.db.exists("Purchase Lead", {"entry_pass": self.entry_pass, "name": ["!=", self.name]}):
 				frappe.throw("This Entry Pass is already linked to another Purchase Lead.")
-
+		if self.status == "Completed" and not self.certificate_of_scrapping:
+			frappe.throw("Please upload the Certificate of Scrapping before proceeding.")
+		else:
+				self.db_set("status", "Completed")
 			
 
 @frappe.whitelist()

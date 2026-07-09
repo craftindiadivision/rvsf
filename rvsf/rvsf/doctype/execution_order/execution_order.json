@@ -84,7 +84,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Purchase Order",
-   "options": "Purchase Order"
+   "options": "Purchase Order",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_jkwy",
@@ -307,7 +308,7 @@
    "link_fieldname": "execution_order"
   }
  ],
- "modified": "2026-06-26 09:49:25.598531",
+ "modified": "2026-07-09 13:56:24.556845",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Order",

@@ -6,7 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "vehicle_category"
+  "vehicle_category",
+  "monthly_wise_scrap_valuation"
  ],
  "fields": [
   {
@@ -14,12 +15,18 @@
    "fieldtype": "Data",
    "label": "Vehicle Category",
    "unique": 1
+  },
+  {
+   "fieldname": "monthly_wise_scrap_valuation",
+   "fieldtype": "Table",
+   "label": "Monthly Wise Scrap Valuation",
+   "options": "Monthly Wise Scrap Valuation"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-02 16:02:47.347255",
+ "modified": "2026-07-06 15:23:56.711087",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Vehicle Category",

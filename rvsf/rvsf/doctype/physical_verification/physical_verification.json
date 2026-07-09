@@ -335,7 +335,8 @@
   {
    "fieldname": "signature",
    "fieldtype": "Signature",
-   "label": "Signature"
+   "label": "Signature",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
@@ -346,7 +347,7 @@
    "link_fieldname": "physical_verification_check_list"
   }
  ],
- "modified": "2026-07-02 16:33:07.471147",
+ "modified": "2026-07-09 12:21:21.832182",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Physical Verification",

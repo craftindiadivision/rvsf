@@ -118,8 +118,7 @@ frappe.ui.form.on("Execution Order", {
         frm.refresh_field("recovered_parts");
         if (
             frm.doc.docstatus === 1 &&
-            all_operations_completed && frm.doc.status === "Work In Progress" &&
-            frm.doc.workflow_state === "Valuation Approved"
+            all_operations_completed && frm.doc.status === "Work In Progress" 
         ) {
             frm.add_custom_button(__("Finish"), () => {
                 frm.trigger("finish_execution_order");
@@ -159,18 +158,18 @@ frappe.ui.form.on("Execution Order", {
     },
     finish_execution_order(frm) {
 
-    let missing_rate = (frm.doc.recovered_parts || []).filter(
-        row => !row.rate || row.rate <= 0
-    );
+    // let missing_rate = (frm.doc.recovered_parts || []).filter(
+    //     row => !row.rate || row.rate <= 0
+    // );
 
-    if (missing_rate.length) {
+    // if (missing_rate.length) {
 
-        frappe.msgprint(
-            __("Please enter rate for all recovered parts.")
-        );
+    //     frappe.msgprint(
+    //         __("Please enter rate for all recovered parts.")
+    //     );
 
-        return;
-    }
+    //     return;
+    // }
 
     frappe.call({
         method: "rvsf.rvsf.doctype.execution_order.execution_order.create_disassembly_stock_entry",

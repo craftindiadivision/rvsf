@@ -468,7 +468,22 @@ def get_missing_job_card_operations(execution_order):
 @frappe.whitelist()
 def create_disassembly_stock_entry(execution_order):
     doc = frappe.get_doc("Execution Order", execution_order)
-
+    purchase_lead = doc.purchase_lead
+    if not purchase_lead:
+        return
+    purchase_receipt = frappe.db.get_value(
+        "Purchase Receipt",
+        {"custom_purchase_lead": purchase_lead, "docstatus": 1},
+        ["grand_total","custom_gross_weight"],
+        as_dict=True
+    )
+    # operation_cost = doc.total_operating_cost
+    minimum_mass_balance_percentage = frappe.db.get_single_value("RVSF Settings", "minimum_mass_balance_percentage") or 0.0
+    if purchase_receipt and purchase_receipt.custom_gross_weight:
+        mass_balance_percentage = (doc.total_weight / purchase_receipt.custom_gross_weight) * 100
+        if mass_balance_percentage < minimum_mass_balance_percentage:
+            frappe.throw(f"Mass balance percentage ({mass_balance_percentage:.2f}%) is below the minimum required ({minimum_mass_balance_percentage}%). Cannot create stock entry.")
+    basic_rate = (purchase_receipt.grand_total / purchase_receipt.custom_gross_weight) if purchase_receipt and purchase_receipt.custom_gross_weight else 0.0
     if not doc.vehicle:
         frappe.throw("Vehicle is mandatory.")
     if not doc.source_warehouse:
@@ -505,13 +520,12 @@ def create_disassembly_stock_entry(execution_order):
             "item_code": row.item_code,
             "qty": row.qty,
             "t_warehouse": row.warehouse,
-            "basic_rate": row.rate,
+            "basic_rate": row.weight * basic_rate if row.weight and basic_rate else 0.0,
             "is_finished_item": 1,
         })
 
     stock_entry.insert(ignore_permissions=True)
     stock_entry.submit()
-
     frappe.db.set_value(
         "Execution Order",
         doc.name,

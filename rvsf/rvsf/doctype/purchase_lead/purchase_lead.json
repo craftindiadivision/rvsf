@@ -16,6 +16,7 @@
   "status",
   "cost_center",
   "is_vehicle_weighment_is_completed",
+  "is_manual_entry",
   "vehicle_scrap_form_section",
   "application_no",
   "column_break_xekl",
@@ -66,7 +67,13 @@
   "account_number",
   "required_documents_section",
   "vehicle_to_be_deposited_by",
-  "required_documents"
+  "required_documents",
+  "scrapping_details_tab",
+  "engine_number_image",
+  "other_documents",
+  "column_break_wkih",
+  "chassis_number_image",
+  "certificate_of_scrapping"
  ],
  "fields": [
   {
@@ -105,6 +112,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Vehicle Registration No",
+   "placeholder": "AA00AA0000",
    "reqd": 1
   },
   {
@@ -130,7 +138,8 @@
    "fieldname": "vehicle_category",
    "fieldtype": "Link",
    "label": "Vehicle Category",
-   "options": "Vehicle Category"
+   "options": "Vehicle Category",
+   "reqd": 1
   },
   {
    "fieldname": "chassis_no",
@@ -149,8 +158,9 @@
   },
   {
    "fieldname": "state_name",
-   "fieldtype": "Data",
-   "label": "State Name"
+   "fieldtype": "Link",
+   "label": "State Name",
+   "options": "State"
   },
   {
    "fieldname": "rto_name",
@@ -186,12 +196,14 @@
   {
    "fieldname": "mobile_number",
    "fieldtype": "Phone",
-   "label": "Mobile Number"
+   "label": "Mobile Number",
+   "reqd": 1
   },
   {
    "fieldname": "email_id",
    "fieldtype": "Data",
-   "label": "Email Id"
+   "label": "Email Id",
+   "reqd": 1
   },
   {
    "fieldname": "address1",
@@ -327,7 +339,8 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Open\nAccepted\nRevised\nRejected\nQuotation Sent"
+   "options": "Open\nAccepted\nRevised\nRejected\nQuotation Sent\nReady For Certification\nCompleted",
+   "read_only": 1
   },
   {
    "fieldname": "cost_center",
@@ -393,12 +406,15 @@
   {
    "fieldname": "application_no",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Application Number (V-Scrap)",
    "reqd": 1
   },
   {
    "fieldname": "application_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Application Type",
    "options": "\nDirect Customer\nQuotation Wise",
    "reqd": 1
@@ -416,6 +432,43 @@
    "fieldtype": "Check",
    "hidden": 1,
    "label": "Is vehicle weighment is completed"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_manual_entry",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is manual entry"
+  },
+  {
+   "depends_on": "eval:doc.status === \"Ready For Certification\" || doc.status == \"Completed\"",
+   "fieldname": "scrapping_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Scrapping Details"
+  },
+  {
+   "fieldname": "engine_number_image",
+   "fieldtype": "Attach",
+   "label": "Engine Number Image"
+  },
+  {
+   "fieldname": "other_documents",
+   "fieldtype": "Attach",
+   "label": "Other Documents"
+  },
+  {
+   "fieldname": "column_break_wkih",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "chassis_number_image",
+   "fieldtype": "Attach",
+   "label": "Chassis Number Image"
+  },
+  {
+   "fieldname": "certificate_of_scrapping",
+   "fieldtype": "Attach",
+   "label": "Certificate of Scrapping"
   }
  ],
  "grid_page_length": 50,
@@ -442,7 +495,7 @@
    "link_fieldname": "purchase_lead"
   }
  ],
- "modified": "2026-07-02 16:09:58.454419",
+ "modified": "2026-07-09 13:46:24.511546",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",
@@ -466,5 +519,10 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Yellow",
+   "title": "Ready For Certification"
+  }
+ ]
 }

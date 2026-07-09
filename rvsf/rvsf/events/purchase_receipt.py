@@ -1,10 +1,15 @@
 import frappe
 from frappe.model.mapper import get_mapped_doc
-from frappe.utils import flt
+from frappe.utils import flt,getdate
 
 
-
+def on_submit(doc, method):
+    if doc.grand_total > doc.custom_scrap_amount:
+        frappe.throw("Purchase Cost cannot be greater than Scrap Amount.")
 def validate_purchase_receipt(doc, method):
+    if not doc.custom_purchase_lead:
+        return
+        
     purchase_order = next(
         (row.purchase_order for row in doc.items if row.purchase_order),
         None
@@ -13,6 +18,22 @@ def validate_purchase_receipt(doc, method):
         validate_purchase_order_for_receipt(purchase_order)
     if doc.custom_purchase_lead and flt(doc.custom_gross_weight) <= 0:
         frappe.throw("Gross Weight must be greater than 0.")
+    if doc.custom_gross_weight > 0 :
+        vehicle_category = frappe.db.get_value(
+            "Purchase Lead",
+            doc.custom_purchase_lead,
+            "vehicle_category"
+        )
+        posting_date = getdate(doc.posting_date)
+        month = posting_date.strftime("%B")
+        scrap_rate = frappe.db.get_value(
+            "Monthly Wise Scrap Valuation",
+            {"parent": vehicle_category, "month": month},
+            "per_kg_rate"
+        )
+        doc.custom_scrap_cost_per_kg = scrap_rate
+        scrap_amount = scrap_rate * doc.custom_gross_weight
+        doc.custom_scrap_amount = scrap_amount
 
 @frappe.whitelist()
 def check_purchase_order_for_receipt(purchase_order):
