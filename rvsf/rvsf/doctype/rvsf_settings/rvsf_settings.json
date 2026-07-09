@@ -6,7 +6,9 @@
  "engine": "InnoDB",
  "field_order": [
   "rvsf_settings_section",
-  "operation_type_mapping"
+  "operation_type_mapping",
+  "mass_balance_settings_section",
+  "minimum_mass_balance_percentage"
  ],
  "fields": [
   {
@@ -19,13 +21,23 @@
    "fieldtype": "Table",
    "label": "Operation Type Mapping",
    "options": "Operation Mapping"
+  },
+  {
+   "fieldname": "mass_balance_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Mass Balance Settings"
+  },
+  {
+   "fieldname": "minimum_mass_balance_percentage",
+   "fieldtype": "Percent",
+   "label": "Minimum Mass Balance Percentage"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-06-24 12:56:38.375191",
+ "modified": "2026-07-07 12:15:34.433614",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "RVSF Settings",

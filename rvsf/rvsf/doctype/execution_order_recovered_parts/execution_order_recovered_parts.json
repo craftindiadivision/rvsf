@@ -10,8 +10,6 @@
   "qty",
   "weight",
   "weight_uom",
-  "rate",
-  "amount",
   "column_break_bfkp",
   "item_name",
   "uom",
@@ -57,21 +55,6 @@
    "precision": "2"
   },
   {
-   "allow_on_submit": 1,
-   "fieldname": "rate",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Rate"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "amount",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Amount",
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_bfkp",
    "fieldtype": "Column Break"
   },
@@ -108,7 +91,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-06-16 17:02:52.443856",
+ "modified": "2026-07-06 17:07:51.830369",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Order Recovered Parts",

@@ -6,11 +6,13 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "date",
   "naming_series",
+  "date",
+  "posting_date",
+  "purchase_lead",
+  "column_break_rfbx",
   "company",
   "purchase_receipt",
-  "purchase_lead",
   "cod_document"
  ],
  "fields": [
@@ -18,7 +20,7 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Date"
+   "label": "COD Issued Date"
   },
   {
    "fieldname": "company",
@@ -44,19 +46,30 @@
   {
    "fieldname": "cod_document",
    "fieldtype": "Attach",
-   "label": "COD Document"
+   "label": "COD Document",
+   "reqd": 1
   },
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
    "options": "COD.-"
+  },
+  {
+   "fieldname": "column_break_rfbx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-17 16:54:49.945948",
+ "modified": "2026-07-09 13:07:13.825441",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Certificate Of Deposit",

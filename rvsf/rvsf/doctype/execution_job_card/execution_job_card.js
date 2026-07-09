@@ -28,6 +28,9 @@ frappe.ui.form.on("Execution Job Card", {
         ) {
 
             frm.add_custom_button(__("Resume Job"), async function () {
+                if (frm.is_dirty()){
+                    await frm.save();
+                }
 
                 await frappe.call({
 
@@ -38,7 +41,7 @@ frappe.ui.form.on("Execution Job Card", {
                     }
                 });
 
-                frm.reload_doc();
+                await frm.reload_doc();
             });
         }
 
@@ -49,15 +52,19 @@ frappe.ui.form.on("Execution Job Card", {
         ) {
 
             frm.add_custom_button(__("Pause Job"), async function () {
-
-                await frappe.call({
-                    method: "rvsf.rvsf.doctype.execution_job_card.execution_job_card.pause_job",
-                    args: {
-                        docname: frm.doc.name
+                    if (frm.is_dirty()){
+                        await frm.save();
                     }
-                });
+                
+                    await frappe.call({
+                        method: "rvsf.rvsf.doctype.execution_job_card.execution_job_card.pause_job",
+                        args: {
+                            docname: frm.doc.name
+                        }
+                    });
 
-                frm.reload_doc();
+                    await frm.reload_doc();
+                
             });
         }
 
@@ -72,7 +79,9 @@ frappe.ui.form.on("Execution Job Card", {
                 frappe.confirm(
                     "Are you sure you want to finish this Job?",
                     async () => {
-
+                        if (frm.is_dirty()) {
+                            await frm.save();
+                        }
                         await frappe.call({
                             method: "rvsf.rvsf.doctype.execution_job_card.execution_job_card.finish_job",
                             args: {
@@ -80,7 +89,7 @@ frappe.ui.form.on("Execution Job Card", {
                             }
                         });
 
-                        frm.reload_doc();
+                        await frm.reload_doc();
                     }
                 );
             });

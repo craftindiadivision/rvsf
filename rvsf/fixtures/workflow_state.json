@@ -12,15 +12,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-05-21 14:58:01.741055",
-  "name": "Valid",
-  "style": "",
-  "workflow_state_name": "Valid"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2026-05-14 17:33:14.161665",
   "name": "Revised",
   "style": "",
@@ -39,10 +30,28 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-05-14 17:34:02.924634",
-  "name": "Accepted",
+  "modified": "2026-06-15 12:19:49.879691",
+  "name": "Verified",
   "style": "",
-  "workflow_state_name": "Accepted"
+  "workflow_state_name": "Verified"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-07-03 12:44:54.274269",
+  "name": "Under Review",
+  "style": "",
+  "workflow_state_name": "Under Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-05-21 14:58:01.741055",
+  "name": "Valid",
+  "style": "",
+  "workflow_state_name": "Valid"
  },
  {
   "docstatus": 0,
@@ -57,19 +66,19 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-06-15 12:19:49.879691",
-  "name": "Verified",
-  "style": "",
-  "workflow_state_name": "Verified"
+  "modified": "2026-07-09 12:25:41.542090",
+  "name": "Yard Entry Approved",
+  "style": "Success",
+  "workflow_state_name": "Yard Entry Approved"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-06-15 12:19:55.368978",
-  "name": "Authorised",
-  "style": "",
-  "workflow_state_name": "Authorised"
+  "modified": "2026-07-09 12:25:49.726414",
+  "name": "Yard Entry Rejected",
+  "style": "Danger",
+  "workflow_state_name": "Yard Entry Rejected"
  },
  {
   "docstatus": 0,
@@ -93,10 +102,19 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2026-06-15 12:19:41.738181",
-  "name": "Inspected",
+  "modified": "2026-06-15 12:19:55.368978",
+  "name": "Authorised",
   "style": "",
-  "workflow_state_name": "Inspected"
+  "workflow_state_name": "Authorised"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2026-05-14 17:34:02.924634",
+  "name": "Accepted",
+  "style": "",
+  "workflow_state_name": "Accepted"
  },
  {
   "docstatus": 0,
@@ -111,10 +129,10 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-16 16:18:56.425938",
-  "name": "Draft",
+  "modified": "2026-06-15 12:19:41.738181",
+  "name": "Inspected",
   "style": "",
-  "workflow_state_name": "Draft"
+  "workflow_state_name": "Inspected"
  },
  {
   "docstatus": 0,
@@ -124,6 +142,15 @@
   "name": "Valuation Approved",
   "style": "",
   "workflow_state_name": "Valuation Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-16 16:18:56.425938",
+  "name": "Draft",
+  "style": "",
+  "workflow_state_name": "Draft"
  },
  {
   "docstatus": 0,

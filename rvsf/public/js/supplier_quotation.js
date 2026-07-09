@@ -1,4 +1,10 @@
 frappe.ui.form.on("Supplier Quotation", {
+    onload_post_render(frm) {
+        if (frm.doc.custom_purchase_lead) {
+            delete frm.custom_make_buttons["Quotation"];
+            frm.remove_custom_button(__("Quotation"), __("Create"));
+        }
+    },
     after_workflow_action(frm) {
         if (frm.doc.workflow_state === "Rejected") {
             console.log("rejected")

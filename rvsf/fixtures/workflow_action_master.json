@@ -44,13 +44,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-06-15 12:19:27.578914",
-  "name": "Inspect",
-  "workflow_action_name": "Inspect"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2026-06-15 12:20:26.194270",
   "name": "Verify",
   "workflow_action_name": "Verify"
@@ -65,16 +58,30 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-05-14 17:41:29.387796",
-  "name": "Cancel",
-  "workflow_action_name": "Cancel"
+  "modified": "2026-06-15 12:19:27.578914",
+  "name": "Inspect",
+  "workflow_action_name": "Inspect"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-06-16 16:53:18.893965",
-  "name": "Approve Valuation",
-  "workflow_action_name": "Approve Valuation"
+  "modified": "2026-07-03 12:40:18.935886",
+  "name": "Approve Yard Entry",
+  "workflow_action_name": "Approve Yard Entry"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-07-03 12:40:49.140915",
+  "name": "Reject Yard Entry",
+  "workflow_action_name": "Reject Yard Entry"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-05-14 17:41:29.387796",
+  "name": "Cancel",
+  "workflow_action_name": "Cancel"
  },
  {
   "docstatus": 0,
@@ -89,5 +96,12 @@
   "modified": "2026-06-16 16:52:14.050091",
   "name": "Send For Valuation",
   "workflow_action_name": "Send For Valuation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-06-16 16:53:18.893965",
+  "name": "Approve Valuation",
+  "workflow_action_name": "Approve Valuation"
  }
 ]

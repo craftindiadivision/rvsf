@@ -151,10 +151,17 @@ doctype_js = {
 # }
 doc_events = {
     "Stock Entry": {
-        "on_cancel": "rvsf.rvsf.events.stock_entry.on_cancel"
+        "validate": "rvsf.rvsf.events.stock_entry.validate",
+        "on_cancel": "rvsf.rvsf.events.stock_entry.on_cancel",
+        "on_submit": "rvsf.rvsf.events.stock_entry.on_submit"
     },
     "Purchase Receipt": {
-        "validate": "rvsf.rvsf.events.purchase_receipt.validate_purchase_receipt"
+        "validate": "rvsf.rvsf.events.purchase_receipt.validate_purchase_receipt",
+        "on_submit": "rvsf.rvsf.events.purchase_receipt.on_submit",
+    },
+    "Purchase Order": {
+        "on_submit": "rvsf.rvsf.events.purchase_order.on_submit",
+        "on_cancel": "rvsf.rvsf.events.purchase_order.on_cancel"
     }
 }
 
@@ -272,7 +279,7 @@ fixtures = [
     {
         "dt": "Workflow",
         "filters": [
-            ["name", "in", ["Supplier Quotation","Gate Pass","Physical Verification","Execution Order"]]
+            ["name", "in", ["Supplier Quotation","Gate Pass","Physical Verification","Security Check"]]
         ]
     },
     {
@@ -307,7 +314,12 @@ fixtures = [
                     "Purchase Receipt-custom_gross_weight",
                     "Purchase Receipt-custom_weight_details",
                     "Purchase Receipt-custom_rc_weight",
-                    "Purchase Receipt-custom_get_weight_details"
+                    "Purchase Receipt-custom_get_weight_details",
+                    "Purchase Receipt-custom_cost_details",
+                    "Purchase Receipt-custom_scrap_cost_per_kg",
+                    "Purchase Receipt-custom_scrap_amount",
+                    "Supplier Quotation-custom_signature",
+                    "Supplier Quotation-custom_customer_sign"
                 ]
             ]
         ]
@@ -328,9 +340,10 @@ fixtures = [
                     "Purchase Order-main-field_order",
                     "Purchase Receipt-main-field_order",
                     "Purchase Order-main-links_order",
-                    "Purchase Receipt-main-links_order"
+                    "Purchase Receipt-main-links_order",
+                    "Supplier Quotation-main-field_order"
                     
-                ]
+                ]   
             ]
         ]
     },
@@ -339,7 +352,7 @@ fixtures = [
     "filters": [
         ["name", "in", [
             "Draft","Sent","Revised","Rejected","Accepted","Cancelled","Issued","Valid","Invalid","Inspected","Verified", "Authorised","Submitted", "Under Valuation", 
-            "Valuation Approved", 
+            "Valuation Approved", "Yard Entry Approved", "Yard Entry Rejected", "Under Review"
         ]]
     ]
     },
@@ -347,7 +360,8 @@ fixtures = [
     "dt": "Workflow Action Master",
     "filters": [
         ["name", "in", [
-            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid","Inspect","Verify","Authorise", "Submit","Send For Valuation","Approve Valuation"
+            "Sent To Supplier","Revise","Reject","Accept","Cancel","Issue","Valid","Invalid","Inspect","Verify","Authorise", "Submit","Send For Valuation","Approve Valuation",
+            "Approve Yard Entry","Reject Yard Entry"
         ]]
     ]
     },

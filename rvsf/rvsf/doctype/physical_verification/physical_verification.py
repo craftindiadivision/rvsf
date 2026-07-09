@@ -73,3 +73,18 @@ def make_work_order(source_name, target_doc=None):
     )
 
     return doclist
+
+@frappe.whitelist()
+def get_vehicle_assessment_template(template):
+    if not frappe.db.exists("Vehicle Condition Assessment Template", template):
+        return
+    doc = frappe.get_doc("Vehicle Condition Assessment Template", template)
+
+    data = []
+
+    for row in doc.vehicle_condition_assessment_items:
+        data.append({
+            "item_code": row.item_code
+        })
+
+    return data

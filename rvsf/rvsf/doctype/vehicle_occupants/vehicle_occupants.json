@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-06-30 15:16:01.417540",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "visitor_name",
+  "visitor_photo",
+  "id_card",
+  "contact_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "visitor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Visitor Name"
+  },
+  {
+   "fieldname": "visitor_photo",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Visitor Photo"
+  },
+  {
+   "fieldname": "id_card",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "ID Card"
+  },
+  {
+   "fieldname": "contact_no",
+   "fieldtype": "Phone",
+   "in_list_view": 1,
+   "label": "Contact No"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-06-30 15:18:26.588947",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Vehicle Occupants",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

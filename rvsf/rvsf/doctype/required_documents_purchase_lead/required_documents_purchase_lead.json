@@ -14,9 +14,10 @@
   {
    "columns": 4,
    "fieldname": "type_of_document",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Type Of Document"
+   "label": "Type Of Document",
+   "options": "\nAddress Proof (Aadhar)\nIdentity Proof (PAN)\nBank Passbook\nRC Copy\nAuthorized Letter"
   },
   {
    "columns": 2,
@@ -38,7 +39,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-05-19 15:36:11.729648",
+ "modified": "2026-07-01 10:04:15.447547",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Required Documents Purchase Lead",

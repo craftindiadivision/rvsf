@@ -28,6 +28,10 @@
   "workstation",
   "workstation_type",
   "operation_type",
+  "vehicle_photos_tab",
+  "vehicle_photos_section",
+  "vehicle_photos",
+  "weight",
   "recovered_parts_tab",
   "recovered_parts_section",
   "recovered_parts_template",
@@ -49,11 +53,7 @@
   "time_logs",
   "more_info_tab",
   "status",
-  "sequence_id",
-  "vehicle_photos_tab",
-  "vehicle_photos_section",
-  "vehicle_photos",
-  "weight"
+  "sequence_id"
  ],
  "fields": [
   {
@@ -130,6 +130,7 @@
   {
    "fieldname": "wip_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Work In Progress Warehouse",
    "options": "Warehouse"
   },
@@ -234,7 +235,7 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval: doc.is_recovery_operation === 1",
+   "depends_on": "eval:doc.is_recovery_operation == 1",
    "fieldname": "recovered_parts_tab",
    "fieldtype": "Tab Break",
    "label": "Recovered Parts"
@@ -299,6 +300,7 @@
   {
    "fieldname": "workstation",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Workstation",
    "options": "Workstation"
   },
@@ -344,7 +346,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-24 14:26:55.071900",
+ "modified": "2026-07-09 13:57:23.138509",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Job Card",

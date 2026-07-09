@@ -84,7 +84,8 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Purchase Order",
-   "options": "Purchase Order"
+   "options": "Purchase Order",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_jkwy",
@@ -114,6 +115,7 @@
    "description": "Warehouse where final recovered products and processed materials are stored.",
    "fieldname": "fg_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Target Warehouse",
    "options": "Warehouse"
   },
@@ -121,6 +123,7 @@
    "description": "This is a location where operations are executed.\n",
    "fieldname": "wip_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Work-In-Progress Warehouse",
    "options": "Warehouse"
   },
@@ -128,6 +131,7 @@
    "description": "This is a location where scraped materials are stored.\n",
    "fieldname": "scrap_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Scrap Warehouse",
    "options": "Warehouse"
   },
@@ -257,7 +261,6 @@
    "options": "Execution Order Operation"
   },
   {
-   "depends_on": "eval:doc.is_recovery_operation === 1",
    "fieldname": "recovered_parts_tab",
    "fieldtype": "Tab Break",
    "label": "Recovered Parts"
@@ -305,7 +308,7 @@
    "link_fieldname": "execution_order"
   }
  ],
- "modified": "2026-06-24 14:46:34.363369",
+ "modified": "2026-07-09 13:56:24.556845",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Execution Order",

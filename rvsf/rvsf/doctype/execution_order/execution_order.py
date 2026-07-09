@@ -33,12 +33,34 @@ class ExecutionOrder(Document):
     
     def validate(self):
         self.status = "Draft"
-
+        if self.purchase_order :
+            if frappe.db.exists({
+                "doctype": "Execution Order",
+                "purchase_order": self.purchase_order,
+                "name": ["!=", self.name]
+            }):
+                frappe.throw(_("An Execution Order already exists for this Purchase Order."))
+        if self.purchase_lead:
+            if frappe.db.exists({
+                "doctype": "Execution Order",
+                "purchase_lead": self.purchase_lead,
+                "name": ["!=", self.name]
+            }):
+                frappe.throw(_("An Execution Order already exists for this Purchase Lead."))
+        if self.vehicle:
+            if frappe.db.exists({
+                "doctype": "Execution Order",
+                "vehicle": self.vehicle,
+                "name": ["!=", self.name]
+            }):
+                frappe.throw(_("An Execution Order already exists for this Vehicle."))
     def before_save(self):
         if self.planned_start_date and self.get("operations"):
             self.schedule_operations()
 
     def on_submit(self):
+        if not self.routing or not self.operations:
+            frappe.throw("Routing and operations are required to submit the Execution Order.")
         self.db_set("status", "Submitted")
         for operation in self.operations:
             self.create_execution_job_card(operation)
@@ -446,7 +468,22 @@ def get_missing_job_card_operations(execution_order):
 @frappe.whitelist()
 def create_disassembly_stock_entry(execution_order):
     doc = frappe.get_doc("Execution Order", execution_order)
-
+    purchase_lead = doc.purchase_lead
+    if not purchase_lead:
+        return
+    purchase_receipt = frappe.db.get_value(
+        "Purchase Receipt",
+        {"custom_purchase_lead": purchase_lead, "docstatus": 1},
+        ["grand_total","custom_gross_weight"],
+        as_dict=True
+    )
+    # operation_cost = doc.total_operating_cost
+    minimum_mass_balance_percentage = frappe.db.get_single_value("RVSF Settings", "minimum_mass_balance_percentage") or 0.0
+    if purchase_receipt and purchase_receipt.custom_gross_weight:
+        mass_balance_percentage = (doc.total_weight / purchase_receipt.custom_gross_weight) * 100
+        if mass_balance_percentage < minimum_mass_balance_percentage:
+            frappe.throw(f"Mass balance percentage ({mass_balance_percentage:.2f}%) is below the minimum required ({minimum_mass_balance_percentage}%). Cannot create stock entry.")
+    basic_rate = (purchase_receipt.grand_total / purchase_receipt.custom_gross_weight) if purchase_receipt and purchase_receipt.custom_gross_weight else 0.0
     if not doc.vehicle:
         frappe.throw("Vehicle is mandatory.")
     if not doc.source_warehouse:
@@ -483,13 +520,12 @@ def create_disassembly_stock_entry(execution_order):
             "item_code": row.item_code,
             "qty": row.qty,
             "t_warehouse": row.warehouse,
-            "basic_rate": row.rate,
+            "basic_rate": row.weight * basic_rate if row.weight and basic_rate else 0.0,
             "is_finished_item": 1,
         })
 
     stock_entry.insert(ignore_permissions=True)
     stock_entry.submit()
-
     frappe.db.set_value(
         "Execution Order",
         doc.name,

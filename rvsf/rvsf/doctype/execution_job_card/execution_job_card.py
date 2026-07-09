@@ -15,6 +15,8 @@ class ExecutionJobCard(Document):
 		if self.status != "Open":
 			self.sync_operation_status()
 	def on_submit(self):
+		if  self.weight <= 0 and self.operation_type == "Weighing":
+			frappe.throw("Please add weight of the vehicle before submitting this Job Card.")
 		if not self.time_logs:
 			frappe.throw(
 				"Please start and complete the operation before submitting this Job Card."
@@ -29,13 +31,14 @@ class ExecutionJobCard(Document):
 		self.map_recovered_parts_to_execution_order()
 		self.update_execution_order_status()
 		self.check_recovered_parts()
-		
+		self.update_purchase_lead_with_weighment()
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
 		self.sync_operation_actuals()
 		self.remove_recovered_parts_from_execution_order()
 		self.update_execution_order_status()
 		self.update_execution_order_actuals()
+		self.remove_purchase_lead_weighment_status()
 	def on_trash(self):
 		self.reset_operation_status()
 	def update_job_status(self):
@@ -139,7 +142,7 @@ class ExecutionJobCard(Document):
 			for row in execution_order.recovered_parts
 		)
 		execution_order.flags.ignore_validate_update_after_submit = True
-		execution_order.save()
+		execution_order.save(ignore_permissions=True)
   
 	def remove_recovered_parts_from_execution_order(doc, method=None):
 		if not doc.execution_order:
@@ -163,6 +166,14 @@ class ExecutionJobCard(Document):
 				"source_job_card": doc.name
 			}
 		)
+		execution_order = frappe.get_doc("Execution Order", doc.execution_order)
+		execution_order.reload()   # Optional but safe
+
+		execution_order.total_weight = sum(
+			flt(d.weight) for d in execution_order.recovered_parts
+		)
+		execution_order.flags.ignore_validate_update_after_submit = True
+		execution_order.save(ignore_permissions=True)
 	def sync_operation_status(self):
 		if not self.execution_order:
 			return
@@ -303,6 +314,44 @@ class ExecutionJobCard(Document):
 			flt(row.weight)
 			for row in self.recovered_parts
 		)
+	def update_purchase_lead_with_weighment(self):
+		if self.operation_type != "Weighing":
+			return
+		if not self.execution_order:
+			return
+
+		execution_order = frappe.get_doc(
+			"Execution Order",
+			self.execution_order
+		)
+		if not execution_order.purchase_lead:
+			return
+		purchase_lead = frappe.get_doc(
+			"Purchase Lead",
+			execution_order.purchase_lead
+		)
+		if self.operation_type == "Weighing":
+			purchase_lead.is_vehicle_weighment_is_completed = 1
+			purchase_lead.save(ignore_permissions=True)
+	def remove_purchase_lead_weighment_status(self):
+		if self.operation_type != "Weighing":
+			return
+		if not self.execution_order:
+			return
+
+		execution_order = frappe.get_doc(
+			"Execution Order",
+			self.execution_order
+		)
+		if not execution_order.purchase_lead:
+			return
+		purchase_lead = frappe.get_doc(
+			"Purchase Lead",
+			execution_order.purchase_lead
+		)
+		if self.operation_type == "Weighing":
+			purchase_lead.is_vehicle_weighment_is_completed = 0
+			purchase_lead.save(ignore_permissions=True)
 @frappe.whitelist()
 def start_job(docname, employees=None):
     import json
@@ -310,6 +359,7 @@ def start_job(docname, employees=None):
     if doc.is_recovery_operation:
         execution_order = doc.execution_order
         validate_cod_issued(execution_order)
+    validate_sequential_order(doc.execution_order, doc.operation)
     # handle json string
     if isinstance(employees, str):
         employees = json.loads(employees)
@@ -496,3 +546,30 @@ def validate_cod_issued(execution_order):
         frappe.throw(
             ("Certificate of Deposit must be issued and submitted before proceeding.")
         )
+        
+def validate_sequential_order(execution_order, operation):
+
+	operations = frappe.get_all(
+		"Execution Order Operation",
+		filters={
+			"parent": execution_order
+		},
+		fields=["operation", "status"],
+		order_by="idx"
+	)
+
+	# Find the index of the current operation
+	current_index = next(
+		(i for i, op in enumerate(operations) if op.operation == operation),
+		None
+	)
+
+	if current_index is None:
+		frappe.throw(f"Operation {operation} not found in Execution Order {execution_order}")
+
+	# Check if any previous operation is not completed
+	for i in range(current_index):
+		if operations[i].status != "Completed":
+			frappe.throw(
+				f"Operation {operations[i].operation} must be completed before starting {operation}."
+			)

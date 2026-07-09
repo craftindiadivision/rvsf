@@ -15,8 +15,31 @@ class GatePass(Document):
 		if not self.start_time or not self.end_time:
 			frappe.throw("Please select a time slot before submitting.")
 		self.db_set("status", "Issued")
+		if self.application_type == "Direct Customer":
+			purchase_lead = self.purchase_lead
+			if purchase_lead:
+				if frappe.db.exists("Purchase Lead", purchase_lead):
+					pl_doc = frappe.get_doc("Purchase Lead", purchase_lead)
+					entry_pass = pl_doc.entry_pass
+					if entry_pass:
+						if frappe.db.exists("Entry Pass", entry_pass):
+							entry_pass_doc = frappe.get_doc("Entry Pass", entry_pass)
+							entry_pass_doc.db_set("gate_pass_id", self.name)
+			
+	
+            
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
+		if self.application_type == "Direct Customer":
+			entry_pass = frappe.db.get_value(
+					"Entry Pass",
+					{"gate_pass_id": self.name},
+					"name"
+				)
+			if entry_pass:
+				if frappe.db.exists("Entry Pass", entry_pass):
+					entry_pass_doc = frappe.get_doc("Entry Pass", entry_pass)
+					entry_pass_doc.db_set("gate_pass_id", None)
 @frappe.whitelist()
 def get_available_slots(template, scheduled_date):
     template_doc = frappe.get_doc(
@@ -135,69 +158,49 @@ def make_entry_pass(source_name, target_doc=None):
     return doc
 
 @frappe.whitelist()
-def check_physical_verification(gate_pass):
-    return frappe.db.exists(
-        "Physical Verification",
-        {
-            "gate_pass_no": gate_pass
-        }
-    )
-    
-@frappe.whitelist()
-def verify_documents(source_name, target_doc=None):
-    existing_pv = frappe.db.exists(
-        "Physical Verification",
-        {"gate_pass_no": source_name}
-    )
-
-    if existing_pv:
-        frappe.throw(
-            f"Physical Verification <b>{existing_pv}</b> already exists for Gate Pass <b>{source_name}</b>"
-        )
+def make_security_check(source_name, target_doc=None):
     def set_missing_values(source, target):
-        target.gate_pass_no = source.name
-        if source.is_entry_pass_issued == 1:
-            entry_pass = frappe.get_doc("Entry Pass", {"gate_pass_id": source.name})
-            in_time = entry_pass.entry_time
-            target.time_in = get_time(in_time)
-        if source.purchase_lead:
-            pl = frappe.get_doc("Purchase Lead", source.purchase_lead)
-            target.purchase_lead = pl.name
-            target.owner_name = pl.owner_name
-            target.pan_no = pl.pan_number
-            target.contact_number = pl.mobile_number
-            if pl.supplier_address:
-                target.supplier_address = pl.supplier_address
-            target.chassis_number = pl.chassis_no
-            target.engine_number = pl.engine_no
-            target.maker_name = pl.maker_name
-            target.model_name = pl.model_name
-            target.fuel_type = pl.fuel_type
-            target.aadhar_no = pl.aadhar_no
-
+        entry_pass = frappe.db.get_value(
+			"Entry Pass",
+			{"gate_pass_id": source.name},
+			"name")
+        if entry_pass:
+            target.entry_pass = entry_pass
+        target.supplier= source.supplier
+        if frappe.db.exists("Purchase Lead", source.purchase_lead):
+            pl_doc = frappe.get_doc("Purchase Lead", source.purchase_lead)
+            target.chassis_no = pl_doc.chassis_no
+            for doc in pl_doc.required_documents:
+                if doc.type_of_document == "RC Copy":
+                    target.rc_copy = doc.view
+                if doc.type_of_document == "Address Proof (Aadhar)":
+                    target.address_proof = doc.view
+                    
+    security_check_exists = frappe.db.exists("Security Check", {"gate_pass": source_name})
+    if security_check_exists:
+        frappe.throw("A Security Check already exists for the selected Gate Pass.")
     doc = get_mapped_doc(
-        "Gate Pass",
-        source_name,
-        {
-            "Gate Pass": {
-                "doctype": "Physical Verification",
-                "field_map": {
-                    "company": "company",
+		"Gate Pass",
+		source_name,
+		{
+			"Gate Pass": {
+				"doctype": "Security Check",
+				"field_map": {
+					"name": "gate_pass",
+					"vehicle": "vehicle_no",
+					"company": "company",
+					"cost_center": "cost_center",
+					"purchase_lead": "purchase_lead",
                     "purchase_order": "purchase_order",
-                    "cost_center": "cost_center",
-                    "vehicle": "vehicle",
-                    "supplier": "supplier",
-                },
-                "field_no_map": [
-                    "naming_series",
-                    "workflow_state",
-                    "verified_by",
-                    "verified_by_name"
-                ]
-            }
-        },
-        target_doc,
-        set_missing_values
-    )
-
-    return doc
+				},
+				"field_no_map": [
+					"naming_series"
+				]
+			}
+		},
+		target_doc,
+		set_missing_values
+	)
+    return doc	
+        
+        
