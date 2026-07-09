@@ -339,6 +339,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
+   "no_copy": 1,
    "options": "Open\nAccepted\nRevised\nRejected\nQuotation Sent\nReady For Certification\nCompleted",
    "read_only": 1
   },
@@ -495,7 +496,7 @@
    "link_fieldname": "purchase_lead"
   }
  ],
- "modified": "2026-07-09 13:46:24.511546",
+ "modified": "2026-07-09 16:11:30.998651",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",
