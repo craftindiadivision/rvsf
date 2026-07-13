@@ -28,7 +28,7 @@ class PurchaseLead(Document):
 				frappe.throw("This Entry Pass is already linked to another Purchase Lead.")
 		if self.status == "Completed" and not self.certificate_of_scrapping:
 			frappe.throw("Please upload the Certificate of Scrapping before proceeding.")
-		elif self.status == "Ready For Scrapping" and self.certificate_of_scrapping:
+		elif self.status == "Ready For Certification" and self.certificate_of_scrapping:
 				self.status = "Completed"
 			
 
