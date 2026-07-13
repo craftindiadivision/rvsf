@@ -131,6 +131,8 @@ def issue_gate_pass(gate_pass, session_user):
 def make_entry_pass(source_name, target_doc=None):
     def set_missing_values(source, target):
         target.gate_pass = source.name
+        target.service_type = "RVSF Services"
+        target.entry_type = "Dismantling"
     entry_pass_exists = frappe.db.exists("Entry Pass", {"gate_pass_id": source_name})
     if entry_pass_exists:
         frappe.throw("An Entry Pass already exists for the selected Gate Pass.")

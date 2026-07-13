@@ -71,7 +71,7 @@ def make_physical_verification(source_name, target_doc=None):
             target.model_name = pl.model_name
             target.fuel_type = pl.fuel_type
             target.aadhar_no = pl.aadhar_no
-
+            target.weight_at_entry_bridge_unladen_weight = pl.rc_weight
     doc = get_mapped_doc(
         "Security Check",
         source_name,
