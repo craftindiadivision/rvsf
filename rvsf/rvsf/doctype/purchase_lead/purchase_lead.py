@@ -63,6 +63,7 @@ def make_supplier(source_name):
 
     address.insert(ignore_permissions=True)
     doc.supplier_address = address.name
+    doc.supplier = supplier.name
     doc.save(ignore_permissions=True)
     
     return supplier.name

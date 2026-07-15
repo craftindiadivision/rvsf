@@ -6,11 +6,7 @@ frappe.ui.form.on("Purchase Lead", {
         if (!frm.is_new() && frm.doc.owner_name) {
 
             // Show Supplier button only if Supplier does not exist
-            frappe.db.exists("Supplier", {
-                supplier_name: frm.doc.owner_name
-            }).then((supplier_exists) => {
-
-                if (!supplier_exists) {
+                if (!frm.doc.supplier) {
                     frm.add_custom_button(__("Supplier"), () => {
                         frappe.call({
                             method: "rvsf.rvsf.doctype.purchase_lead.purchase_lead.make_supplier",
@@ -35,7 +31,7 @@ frappe.ui.form.on("Purchase Lead", {
 
                 // Show Supplier Quotation button only if Supplier exists
                 // and no Supplier Quotation exists for this Purchase Lead
-                if (supplier_exists && frm.doc.application_type === "Quotation Wise") {
+                if (frm.doc.supplier && frm.doc.application_type === "Quotation Wise") {
                     frappe.db.exists("Supplier Quotation", {
                         custom_purchase_lead: frm.doc.name
                     }).then((quotation_exists) => {
@@ -50,7 +46,7 @@ frappe.ui.form.on("Purchase Lead", {
                         }
                     });
                 }
-                else if (frm.doc.application_type === "Direct Customer" && supplier_exists) {
+                else if (frm.doc.application_type === "Direct Customer" && frm.doc.supplier) {
                     if (!frm.doc.is_vehicle_weighment_is_completed) {
                         frappe.db.exists("Gate Pass", {
                             purchase_lead: frm.doc.name
@@ -82,7 +78,6 @@ frappe.ui.form.on("Purchase Lead", {
                         });
                     }           
                 }
-            });
         }
         set_district_query(frm);
     },

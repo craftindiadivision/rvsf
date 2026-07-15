@@ -52,6 +52,7 @@
   "address3",
   "pin_code",
   "supplier_address",
+  "supplier",
   "vehicle_check_section",
   "no_hypothecation",
   "column_break_savm",
@@ -379,6 +380,7 @@
    "fieldname": "supplier_address",
    "fieldtype": "Link",
    "label": "Supplier Address",
+   "no_copy": 1,
    "options": "Address",
    "read_only": 1
   },
@@ -470,6 +472,13 @@
    "fieldname": "certificate_of_scrapping",
    "fieldtype": "Attach",
    "label": "Certificate of Scrapping"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "no_copy": 1,
+   "options": "Supplier"
   }
  ],
  "grid_page_length": 50,
@@ -496,7 +505,7 @@
    "link_fieldname": "purchase_lead"
   }
  ],
- "modified": "2026-07-09 16:11:30.998651",
+ "modified": "2026-07-14 17:31:45.876390",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",

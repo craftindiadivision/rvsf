@@ -92,8 +92,9 @@ frappe.ui.form.on("Gate Pass", {
             }
         }
 });
-function show_slot_dialog(frm, slots) {
-    if (slots.length === 0) {
+function show_slot_dialog(frm, data) {
+
+    if (data.is_holiday) {
         frappe.msgprint({
             title: __("Holiday"),
             message: __("The selected date is a holiday."),
@@ -102,6 +103,15 @@ function show_slot_dialog(frm, slots) {
         return;
     }
 
+    if (data.slots.length === 0) {
+        frappe.msgprint({
+            title: __("No Slots Available"),
+            message: __("No time slots are available for the selected date."),
+            indicator: "orange"
+        });
+        return;
+    }
+    let slots = data.slots;
     let slots_html = "";
 
     slots.forEach(slot => {

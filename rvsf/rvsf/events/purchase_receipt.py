@@ -31,7 +31,12 @@ def validate_purchase_receipt(doc, method):
             {"parent": vehicle_category, "month": month},
             "per_kg_rate"
         )
-        doc.custom_scrap_cost_per_kg = scrap_rate
+        if not flt(scrap_rate):
+            frappe.throw(
+                ("Scrap Rate is not configured for Vehicle Category <b>{0}</b> for the month <b>{1}</b>. Please configure the Monthly Wise Scrap Valuation before proceeding.")
+                .format(vehicle_category, month)
+            )
+        doc.custom_scrap_cost_per_kg = scrap_rate 
         scrap_amount = scrap_rate * doc.custom_gross_weight
         doc.custom_scrap_amount = scrap_amount
 
@@ -209,4 +214,71 @@ def get_weight_details(purchase_lead):
     return {
         "custom_rc_weight": rc_weight,
         "custom_gross_weight": gross_weight
+    }
+    
+@frappe.whitelist()
+def get_purchase_receipt_weight_details(purchase_lead, posting_date):
+
+    rc_weight = 0
+    gross_weight = 0
+    scrap_rate = 0
+    scrap_amount = 0
+
+    if not purchase_lead:
+        return {}
+
+    # RC Weight
+    purchase_lead_doc = frappe.db.get_value(
+        "Purchase Lead",
+        purchase_lead,
+        ["rc_weight", "vehicle_category"],
+        as_dict=True
+    )
+
+    if purchase_lead_doc:
+        rc_weight = purchase_lead_doc.rc_weight or 0
+        vehicle_category = purchase_lead_doc.vehicle_category
+
+        # Gross Weight
+        execution_order = frappe.db.get_value(
+            "Execution Order",
+            {"purchase_lead": purchase_lead},
+            "name"
+        )
+
+        if execution_order:
+            job_cards = frappe.get_all(
+                "Execution Job Card",
+                filters={"execution_order": execution_order},
+                fields=["weight"],
+                order_by="creation desc"
+            )
+
+            for jc in job_cards:
+                if flt(jc.weight) > 0:
+                    gross_weight = flt(jc.weight)
+                    break
+
+        # Scrap Calculation
+        if gross_weight > 0 and vehicle_category and posting_date:
+            month = getdate(posting_date).strftime("%B")
+
+            scrap_rate = flt(
+                frappe.db.get_value(
+                    "Monthly Wise Scrap Valuation",
+                    {
+                        "parent": vehicle_category,
+                        "month": month
+                    },
+                    "per_kg_rate"
+                )
+            )
+
+            scrap_amount = gross_weight * flt(scrap_rate)
+
+    return {
+        "custom_rc_weight": rc_weight,
+        "custom_gross_weight": gross_weight,
+        "custom_scrap_cost_per_kg": scrap_rate,
+        "custom_scrap_amount": scrap_amount
     }
