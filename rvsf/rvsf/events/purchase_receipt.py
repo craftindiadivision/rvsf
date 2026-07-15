@@ -31,7 +31,12 @@ def validate_purchase_receipt(doc, method):
             {"parent": vehicle_category, "month": month},
             "per_kg_rate"
         )
-        doc.custom_scrap_cost_per_kg = scrap_rate
+        if not flt(scrap_rate):
+            frappe.throw(
+                ("Scrap Rate is not configured for Vehicle Category <b>{0}</b> for the month <b>{1}</b>. Please configure the Monthly Wise Scrap Valuation before proceeding.")
+                .format(vehicle_category, month)
+            )
+        doc.custom_scrap_cost_per_kg = scrap_rate 
         scrap_amount = scrap_rate * doc.custom_gross_weight
         doc.custom_scrap_amount = scrap_amount
 
@@ -269,7 +274,7 @@ def get_purchase_receipt_weight_details(purchase_lead, posting_date):
                 )
             )
 
-            scrap_amount = gross_weight * scrap_rate
+            scrap_amount = gross_weight * flt(scrap_rate)
 
     return {
         "custom_rc_weight": rc_weight,

@@ -47,6 +47,7 @@ def get_available_slots(template, scheduled_date):
         template
     )
     slots = []
+    print(444444444444444444444444)
     holiday = template_doc.holiday_list
     if holiday:
         holiday_dates = frappe.get_all(
@@ -56,7 +57,11 @@ def get_available_slots(template, scheduled_date):
         )
         holiday_dates = [getdate(h["holiday_date"]) for h in holiday_dates]
         if getdate(scheduled_date) in holiday_dates:
-            return slots
+            return {
+                "is_holiday": True,
+                "slots": []                
+            }
+    print(44444444444444444222222222222222)
     weekday = getdate(scheduled_date).strftime("%A")
     for row in template_doc.slot_details:
         if row.day != weekday:
@@ -87,7 +92,10 @@ def get_available_slots(template, scheduled_date):
             "booked": booking_count,
             "available": available,
         })
-    return slots
+    return {
+        "is_holiday": False,
+        "slots": slots
+    }
 
 @frappe.whitelist()
 def issue_gate_pass(gate_pass, session_user):
