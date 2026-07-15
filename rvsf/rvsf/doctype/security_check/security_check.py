@@ -14,7 +14,8 @@ class SecurityCheck(Document):
                 "Security Check",
                 {
                     "vehicle_no": self.vehicle_no,
-                    "name": ["!=", self.name]
+                    "name": ["!=", self.name],
+                    "docstatus":1
                 }
             )
 

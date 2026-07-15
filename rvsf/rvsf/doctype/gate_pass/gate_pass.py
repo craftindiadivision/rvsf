@@ -178,7 +178,13 @@ def make_security_check(source_name, target_doc=None):
                 if doc.type_of_document == "Address Proof (Aadhar)":
                     target.address_proof = doc.view
                     
-    security_check_exists = frappe.db.exists("Security Check", {"gate_pass": source_name})
+    security_check_exists = frappe.db.exists(
+        "Security Check",
+        {
+            "gate_pass": source_name,
+            "docstatus": 1
+        }
+    )
     if security_check_exists:
         frappe.throw("A Security Check already exists for the selected Gate Pass.")
     doc = get_mapped_doc(

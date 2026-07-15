@@ -1,4 +1,35 @@
 frappe.ui.form.on("Purchase Receipt", {
+     onload(frm) {
+
+        if (
+            frm.doc.docstatus === 0 &&
+            frm.doc.custom_purchase_lead &&
+            !frm.doc.custom_gross_weight
+        ) {
+            frm.events.get_purchase_receipt_weight_details(frm);
+        }
+    },
+
+    get_purchase_receipt_weight_details(frm) {
+
+        frappe.call({
+            method: "rvsf.rvsf.events.purchase_receipt.get_purchase_receipt_weight_details",
+            args: {
+                purchase_lead: frm.doc.custom_purchase_lead,
+                posting_date: frm.doc.posting_date
+            },
+            callback: function(r) {
+
+                if (!r.message) return;
+
+                frm.set_value("custom_rc_weight", r.message.custom_rc_weight);
+                frm.set_value("custom_gross_weight", r.message.custom_gross_weight);
+                frm.set_value("custom_scrap_cost_per_kg", r.message.custom_scrap_cost_per_kg);
+                frm.set_value("custom_scrap_amount", r.message.custom_scrap_amount);
+            }
+        });
+
+    },
     refresh(frm) {
 
         // Validation for new Purchase Receipt

@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "inspection_question",
-  "respone",
+  "response",
   "reason_for_check"
  ],
  "fields": [
@@ -18,24 +18,24 @@
    "label": "Inspection Question"
   },
   {
-   "fieldname": "respone",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Respone",
-   "options": "\nYes\nNo\nN/A"
-  },
-  {
    "fieldname": "reason_for_check",
    "fieldtype": "Small Text",
    "in_list_view": 1,
    "label": "Reason for Check"
+  },
+  {
+   "fieldname": "response",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Response",
+   "options": "\nYes\nNo\nN/A"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-07-03 11:19:21.430158",
+ "modified": "2026-07-15 12:22:44.366111",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Security Verification Form",
