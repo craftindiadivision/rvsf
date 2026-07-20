@@ -1,0 +1,96 @@
+{
+ "app": "rvsf",
+ "charts": [],
+ "content": "[{\"id\":\"e2dg-nrawC\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today's Entries\",\"col\":4}},{\"id\":\"MRVzzmBFDU\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today's Exits\",\"col\":4}},{\"id\":\"tu5MImexJd\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Exits\",\"col\":4}},{\"id\":\"GRFqTZje3Z\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Today's Gate Passes\",\"col\":4}},{\"id\":\"B5aenAPZpY\",\"type\":\"paragraph\",\"data\":{\"text\":\"Quick Actions\",\"col\":12}},{\"id\":\"KWVhl9B92C\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Entry Pass\",\"col\":3}},{\"id\":\"7V83nn7_NK\",\"type\":\"header\",\"data\":{\"text\":\"Masters &amp; Reports<span class=\\\"h4\\\"><b></b></span>\",\"col\":12}},{\"id\":\"yPZg5xAqXt\",\"type\":\"card\",\"data\":{\"card_name\":\"Security Operations\",\"col\":4}}]",
+ "creation": "2026-07-19 20:21:39.164289",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "scan-search",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Security",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Security Operations",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gate Pass",
+   "link_count": 0,
+   "link_to": "Gate Pass",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entry Pass",
+   "link_count": 0,
+   "link_to": "Entry Pass",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Security Check",
+   "link_count": 0,
+   "link_to": "Security Check",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-19 21:49:04.451606",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Security",
+ "number_cards": [
+  {
+   "label": "Today's Gate Passes",
+   "number_card_name": "Today's Gate Passes"
+  },
+  {
+   "label": "Today's Entries",
+   "number_card_name": "Today's Entries"
+  },
+  {
+   "label": "Today's Exits",
+   "number_card_name": "Today's Exit"
+  },
+  {
+   "label": "Pending Exits",
+   "number_card_name": "Pending Exits"
+  }
+ ],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "New",
+   "label": "Entry Pass",
+   "link_to": "Entry Pass",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Security",
+ "type": "Workspace"
+}

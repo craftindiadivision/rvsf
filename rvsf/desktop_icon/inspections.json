@@ -1,0 +1,25 @@
+{
+ "app": "rvsf",
+ "bg_color": "blue",
+ "creation": "2026-07-19 21:53:31.298200",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "Link",
+ "idx": 3,
+ "label": "Inspections",
+ "link_to": "Inspections",
+ "link_type": "Workspace Sidebar",
+ "modified": "2026-07-20 10:45:44.295827",
+ "modified_by": "Administrator",
+ "name": "Inspections",
+ "owner": "Administrator",
+ "parent_icon": "RVSF",
+ "restrict_removal": 0,
+ "roles": [
+  {
+   "role": "Inspector"
+  }
+ ],
+ "standard": 1
+}

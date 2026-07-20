@@ -1,0 +1,27 @@
+{
+ "app": "rvsf",
+ "creation": "2026-07-19 20:21:39.175566",
+ "docstatus": 0,
+ "doctype": "Workspace Sidebar",
+ "header_icon": "scan-search",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Security",
+   "link_to": "Security",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-19 20:22:55.424463",
+ "modified_by": "Administrator",
+ "name": "Security",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "Security"
+}

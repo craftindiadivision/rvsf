@@ -1,0 +1,166 @@
+{
+ "app": "rvsf",
+ "charts": [],
+ "content": "[{\"id\":\"XzxZqjD8Sf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Accepted Purchase Leads\",\"col\":4}},{\"id\":\"u7A4vciknu\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Purchase Lead\",\"col\":4}},{\"id\":\"VA3Uv1l_Qt\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Ready For Certification\",\"col\":4}},{\"id\":\"mqcTTUXlHN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"bZw8fx42BU\",\"type\":\"paragraph\",\"data\":{\"text\":\"Quick Actions\",\"col\":12}},{\"id\":\"00-8VzsMwo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Lead\",\"col\":3}},{\"id\":\"qUaOmqjIq7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"jAHerUu2J7\",\"type\":\"card\",\"data\":{\"card_name\":\"Applications\",\"col\":4}},{\"id\":\"e8WZmcPXTq\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}}]",
+ "creation": "2026-07-13 12:00:41.175390",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "building-2",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Office",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item",
+   "link_count": 0,
+   "link_to": "Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier",
+   "link_count": 0,
+   "link_to": "Supplier",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicle Category",
+   "link_count": 0,
+   "link_to": "Vehicle Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Time Slot Template",
+   "link_count": 0,
+   "link_to": "Time Slot Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Applications",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Lead",
+   "link_count": 0,
+   "link_to": "Purchase Lead",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier Quotation",
+   "link_count": 0,
+   "link_to": "Supplier Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Gate Pass",
+   "link_count": 0,
+   "link_to": "Gate Pass",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Entry Pass",
+   "link_count": 0,
+   "link_to": "Entry Pass",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certificate Of Deposit",
+   "link_count": 0,
+   "link_to": "Certificate Of Deposit",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-19 23:08:19.564829",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "Office",
+ "number_cards": [
+  {
+   "label": "Accepted Purchase Leads",
+   "number_card_name": "Accepted Purchase Leads"
+  },
+  {
+   "label": "Rejected Purchase Lead",
+   "number_card_name": "Rejected Purchase Lead"
+  },
+  {
+   "label": "Ready For Certification",
+   "number_card_name": "Ready For Certification"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Officer"
+  }
+ ],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "New",
+   "label": "Purchase Lead",
+   "link_to": "Purchase Lead",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Office",
+ "type": "Workspace"
+}
