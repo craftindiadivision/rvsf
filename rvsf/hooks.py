@@ -319,7 +319,9 @@ fixtures = [
                     "Purchase Receipt-custom_scrap_cost_per_kg",
                     "Purchase Receipt-custom_scrap_amount",
                     "Supplier Quotation-custom_signature",
-                    "Supplier Quotation-custom_customer_sign"
+                    "Supplier Quotation-custom_customer_sign",
+                    "Lead-custom_product_name",
+                    "Lead-custom_info_details"
                 ]
             ]
         ]
@@ -341,7 +343,8 @@ fixtures = [
                     "Purchase Receipt-main-field_order",
                     "Purchase Order-main-links_order",
                     "Purchase Receipt-main-links_order",
-                    "Supplier Quotation-main-field_order"
+                    "Supplier Quotation-main-field_order",
+                    "Lead-main-field_order"
                     
                 ]   
             ]
