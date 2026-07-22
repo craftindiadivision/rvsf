@@ -1,0 +1,26 @@
+{
+ "app": "rvsf",
+ "bg_color": "blue",
+ "creation": "2026-07-13 12:00:41.206850",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "Link",
+ "idx": 1,
+ "label": "Office",
+ "link_to": "Office",
+ "link_type": "Workspace Sidebar",
+ "modified": "2026-07-19 23:10:16.497541",
+ "modified_by": "Administrator",
+ "name": "Office",
+ "owner": "Administrator",
+ "parent_icon": "RVSF",
+ "restrict_removal": 0,
+ "roles": [
+  {
+   "role": "Officer"
+  }
+ ],
+ "sidebar": "",
+ "standard": 1
+}

@@ -16,7 +16,6 @@ frappe.ui.form.on("Execution Job Card", {
         ) {
 
             frm.add_custom_button(__("Start Job"), function () {
-                console.log("Start Job");
                 frm.trigger("open_employee_dialog");
             });
         }

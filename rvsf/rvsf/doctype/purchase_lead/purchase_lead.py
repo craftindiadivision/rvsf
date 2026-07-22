@@ -136,7 +136,7 @@ def make_supplier_quotation(source_name):
                     "name": "custom_lead"
                 },
                 "field_no_map": [
-                "status"
+                "status","naming_series"
                 ]
             }
         },
