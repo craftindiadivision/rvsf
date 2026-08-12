@@ -3,7 +3,8 @@
 
 import frappe
 from frappe.model.document import Document
-
+from frappe import _
+from frappe.utils import now_datetime
 
 class EntryPass(Document):
 	def validate(self):
@@ -35,3 +36,49 @@ class EntryPass(Document):
 					"is_entry_pass_issued": 0
 				}
 			)
+
+@frappe.whitelist()
+def scan_entry_pass(entry_pass):
+    if not entry_pass:
+        frappe.throw(_("Entry Pass is required."))
+
+    if not frappe.db.exists("Entry Pass", entry_pass):
+        frappe.throw(_("Invalid Entry Pass: {0}").format(entry_pass))
+
+    doc = frappe.get_doc("Entry Pass", entry_pass)
+
+    # Prevent duplicate exit
+    if doc.exit_time:
+        frappe.throw(
+            _("Vehicle has already exited on {0}.").format(doc.exit_time)
+        )
+
+    # Update exit details
+    doc.exit_time = now_datetime()
+
+    # Optional: if you have these fields
+    if hasattr(doc, "exit_approved_by"):
+        doc.exit_approved_by = frappe.session.user
+
+    if hasattr(doc, "exit_approved_by_name"):
+        doc.exit_approved_by_name = frappe.db.get_value(
+            "User",
+            frappe.session.user,
+            "full_name"
+        )
+
+    # Optional status field
+    if hasattr(doc, "status"):
+        doc.status = "Exited"
+
+    doc.save(ignore_permissions=True)
+    frappe.db.commit()
+
+    return {
+        "success": True,
+        "entry_pass": doc.name,
+        "vehicle": doc.vehicle,
+        "customer": doc.visitor_name,
+        "exit_time": doc.exit_time,
+        "message": _("Vehicle exit recorded successfully.")
+    }

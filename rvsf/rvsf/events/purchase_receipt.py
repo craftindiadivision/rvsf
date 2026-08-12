@@ -39,6 +39,8 @@ def validate_purchase_receipt(doc, method):
         doc.custom_scrap_cost_per_kg = scrap_rate 
         scrap_amount = scrap_rate * doc.custom_gross_weight
         doc.custom_scrap_amount = scrap_amount
+        doc.custom_actual_procurement_cost = doc.grand_total
+        doc.custom_actual_rate__kg = flt(doc.custom_actual_procurement_cost) / flt(doc.custom_gross_weight)
 
 @frappe.whitelist()
 def check_purchase_order_for_receipt(purchase_order):

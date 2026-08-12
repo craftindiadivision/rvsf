@@ -23,13 +23,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-05-12 11:23:32.892262",
-  "name": "Reject",
-  "workflow_action_name": "Reject"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2026-05-21 14:59:13.917177",
   "name": "Issue",
   "workflow_action_name": "Issue"
@@ -103,5 +96,12 @@
   "modified": "2026-06-16 16:53:18.893965",
   "name": "Approve Valuation",
   "workflow_action_name": "Approve Valuation"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-05-12 11:23:32.892262",
+  "name": "Reject",
+  "workflow_action_name": "Reject"
  }
 ]

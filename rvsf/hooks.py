@@ -321,7 +321,7 @@ fixtures = [
                     "Supplier Quotation-custom_signature",
                     "Supplier Quotation-custom_customer_sign",
                     "Lead-custom_product_name",
-                    "Lead-custom_info_details"
+                    "Lead-custom_info_details",
                 ]
             ]
         ]

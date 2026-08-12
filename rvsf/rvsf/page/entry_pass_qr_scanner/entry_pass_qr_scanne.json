@@ -1,0 +1,20 @@
+{
+ "content": null,
+ "creation": "2026-07-20 14:14:21.740027",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": "scanner",
+ "idx": 0,
+ "modified": "2026-07-20 14:14:25.295916",
+ "modified_by": "Administrator",
+ "module": "Rvsf",
+ "name": "entry-pass-qr-scanne",
+ "owner": "Administrator",
+ "page_name": "entry-pass-qr-scanne",
+ "roles": [],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1,
+ "title": "Entry Pass QR Scanner"
+}
