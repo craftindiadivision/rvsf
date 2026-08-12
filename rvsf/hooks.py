@@ -322,6 +322,8 @@ fixtures = [
                     "Supplier Quotation-custom_customer_sign",
                     "Lead-custom_product_name",
                     "Lead-custom_info_details",
+                    "Purchase Receipt-custom_column_break_jtfhm",
+                    "Purchase Receipt-custom_column_break_lfmf6",
                 ]
             ]
         ]
@@ -344,7 +346,7 @@ fixtures = [
                     "Purchase Order-main-links_order",
                     "Purchase Receipt-main-links_order",
                     "Supplier Quotation-main-field_order",
-                    "Lead-main-field_order"
+                    "Lead-main-field_order",
                     
                 ]   
             ]
