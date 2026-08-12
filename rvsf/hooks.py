@@ -324,6 +324,8 @@ fixtures = [
                     "Lead-custom_info_details",
                     "Purchase Receipt-custom_column_break_jtfhm",
                     "Purchase Receipt-custom_column_break_lfmf6",
+                    "Item-custom_column_break_hx6lh",
+                    "Item-custom_column_break_ylzr4"
                 ]
             ]
         ]
