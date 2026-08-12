@@ -1,0 +1,26 @@
+{
+ "app": "rvsf",
+ "creation": "2026-07-19 21:53:31.286691",
+ "docstatus": 0,
+ "doctype": "Workspace Sidebar",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Inspections",
+   "link_to": "Inspections",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-22 17:07:36.573367",
+ "modified_by": "Administrator",
+ "name": "Inspections",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "Inspections"
+}

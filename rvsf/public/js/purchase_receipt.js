@@ -26,6 +26,7 @@ frappe.ui.form.on("Purchase Receipt", {
                 frm.set_value("custom_gross_weight", r.message.custom_gross_weight);
                 frm.set_value("custom_scrap_cost_per_kg", r.message.custom_scrap_cost_per_kg);
                 frm.set_value("custom_scrap_amount", r.message.custom_scrap_amount);
+                calculate_actual_rate(frm);
             }
         });
 
@@ -50,7 +51,7 @@ frappe.ui.form.on("Purchase Receipt", {
                 });
             }
         }
-
+        calculate_actual_rate(frm);
         // Create COD button for submitted Purchase Receipt
         if (frm.doc.docstatus === 1) {
 
@@ -96,5 +97,36 @@ frappe.ui.form.on("Purchase Receipt", {
                 }
             });
         }
+    },
+    grand_total(frm) {
+        calculate_actual_rate(frm);
     }
 });
+frappe.ui.form.on("Purchase Receipt Item", {
+    rate(frm) {
+        setTimeout(() => {
+            calculate_actual_rate(frm);
+        }, 100);
+    },
+
+    qty(frm) {
+        calculate_actual_rate(frm);
+    },
+
+    amount(frm) {
+        calculate_actual_rate(frm);
+    }
+});
+
+function calculate_actual_rate(frm) {
+    if (flt(frm.doc.custom_gross_weight) > 0) {
+        frm.set_value(
+            "custom_actual_procurement_cost",
+            flt(frm.doc.grand_total)
+        );
+        frm.set_value(
+            "custom_actual_rate__kg",
+            flt(frm.doc.grand_total) / flt(frm.doc.custom_gross_weight)
+        );
+    }
+}
