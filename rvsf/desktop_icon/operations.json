@@ -1,0 +1,25 @@
+{
+ "app": "rvsf",
+ "bg_color": "blue",
+ "creation": "2026-07-19 22:07:29.549824",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "Link",
+ "idx": 4,
+ "label": "Operations",
+ "link_to": "Operations",
+ "link_type": "Workspace Sidebar",
+ "modified": "2026-08-12 17:20:35.536938",
+ "modified_by": "Administrator",
+ "name": "Operations",
+ "owner": "Administrator",
+ "parent_icon": "RVSF",
+ "restrict_removal": 0,
+ "roles": [
+  {
+   "role": "Operator"
+  }
+ ],
+ "standard": 1
+}
