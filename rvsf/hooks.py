@@ -325,7 +325,10 @@ fixtures = [
                     "Purchase Receipt-custom_column_break_jtfhm",
                     "Purchase Receipt-custom_column_break_lfmf6",
                     "Item-custom_column_break_hx6lh",
-                    "Item-custom_column_break_ylzr4"
+                    "Item-custom_column_break_ylzr4",
+                    "Item-custom_vehicle_category",
+                    "Purchase Receipt-custom_actual_procurement_cost",
+                    "Purchase Receipt-custom_actual_rate_per_kg"
                 ]
             ]
         ]
@@ -349,7 +352,6 @@ fixtures = [
                     "Purchase Receipt-main-links_order",
                     "Supplier Quotation-main-field_order",
                     "Lead-main-field_order",
-                    
                 ]   
             ]
         ]
