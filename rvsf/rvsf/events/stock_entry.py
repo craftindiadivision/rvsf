@@ -5,18 +5,18 @@ from frappe.utils import flt
 
 
 def validate(self, method=None):
-	if self.purpose == "Disassemble" and self.custom_execution_order:
+	if self.stock_entry_type == "Dismantle" and self.custom_execution_order:
 		add_rvsf_additional_cost(self, self.custom_execution_order)
 
 def on_submit(self, method=None):
-	if self.stock_entry_type == "Disassemble" and self.custom_execution_order:	
+	if self.stock_entry_type == "Dismantle" and self.custom_execution_order:	
 		if frappe.db.exists("Execution Order", self.custom_execution_order):
 			purchase_lead = frappe.db.get_value("Execution Order", self.custom_execution_order, "purchase_lead")
 			purchase_lead_doc = frappe.get_doc("Purchase Lead", purchase_lead)
 			purchase_lead_doc.db_set("status", "Ready For Certification")
 def on_cancel(self, method=None):
 	
-	if self.stock_entry_type == "Disassemble" and self.custom_execution_order:
+	if self.stock_entry_type == "Dismantle" and self.custom_execution_order:
 		if frappe.db.exists("Execution Order", self.custom_execution_order):
 			frappe.db.set_value(
 				"Execution Order",
@@ -32,10 +32,8 @@ def on_cancel(self, method=None):
 
 
 def add_rvsf_additional_cost(stock_entry, execution_order_name):
-	
 	if not execution_order_name:
 		return
-	
 	try:
 		execution_order = frappe.get_doc("Execution Order", execution_order_name)
 	except frappe.DoesNotExistError:
@@ -68,7 +66,6 @@ def add_rvsf_additional_cost(stock_entry, execution_order_name):
 			"RVSF Stock Entry Additional Cost"
 		)
 		return
-	
 	# Clear existing RVSF additional costs to prevent duplicates
 	# Keep only non-RVSF costs (if any from other sources)
 	stock_entry.additional_costs = [
@@ -82,7 +79,6 @@ def add_rvsf_additional_cost(stock_entry, execution_order_name):
 		execution_order,
 		expense_account
 	)
-	
 	# Add additional operating costs from Execution Order
 	add_execution_order_additional_cost(
 		stock_entry,
@@ -90,10 +86,7 @@ def add_rvsf_additional_cost(stock_entry, execution_order_name):
 		expense_account
 	)
 
-
 def add_execution_order_operating_cost(stock_entry, execution_order, expense_account):
-	
-	
 	if not execution_order.get("operations"):
 		return
 	

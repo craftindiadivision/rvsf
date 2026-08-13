@@ -497,7 +497,7 @@ def create_disassembly_stock_entry(execution_order):
 
     stock_entry = frappe.new_doc("Stock Entry")
     stock_entry.company = doc.company
-    stock_entry.stock_entry_type = "Disassemble"
+    stock_entry.stock_entry_type = "Dismantle"
     stock_entry.custom_execution_order = doc.name
 
     stock_entry.append("items", {
@@ -516,12 +516,14 @@ def create_disassembly_stock_entry(execution_order):
         #             "weight_uom": row.weight_uom or ""
         #         }
         #     )
+        rate = row.weight * basic_rate if row.weight and basic_rate else 0.0
         stock_entry.append("items", {
             "item_code": row.item_code,
             "qty": row.qty,
             "t_warehouse": row.warehouse,
-            "basic_rate": row.weight * basic_rate if row.weight and basic_rate else 0.0,
-            "is_finished_item": 1,
+            "basic_rate": rate,
+            "basic_amount": row.qty * rate,
+            "set_basic_rate_manually": 1,
         })
 
     stock_entry.insert(ignore_permissions=True)
