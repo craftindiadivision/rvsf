@@ -50,8 +50,8 @@ frappe.ui.form.on("Purchase Receipt", {
                     }
                 });
             }
+            calculate_actual_rate(frm);
         }
-        calculate_actual_rate(frm);
         // Create COD button for submitted Purchase Receipt
         if (frm.doc.docstatus === 1) {
 
