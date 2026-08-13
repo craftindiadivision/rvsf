@@ -328,7 +328,7 @@ fixtures = [
                     "Item-custom_column_break_ylzr4",
                     "Item-custom_vehicle_category",
                     "Purchase Receipt-custom_actual_procurement_cost",
-                    "Purchase Receipt-custom_actual_rate_per_kg"
+                    "Purchase Receipt-custom_actual_rate__kg"
                 ]
             ]
         ]
