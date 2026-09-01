@@ -414,7 +414,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Application Number (V-Scrap)",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "application_type",
@@ -506,9 +507,13 @@
   {
    "link_doctype": "Gate Pass",
    "link_fieldname": "purchase_lead"
+  },
+  {
+   "link_doctype": "Certificate Of Deposit",
+   "link_fieldname": "purchase_lead"
   }
  ],
- "modified": "2026-07-20 11:52:57.553431",
+ "modified": "2026-09-01 14:46:48.543368",
  "modified_by": "Administrator",
  "module": "Rvsf",
  "name": "Purchase Lead",
