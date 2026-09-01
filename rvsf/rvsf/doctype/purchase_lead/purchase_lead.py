@@ -1,6 +1,7 @@
 # Copyright (c) 2026, saheer and contributors
 # For license information, please see license.txt
 
+import re
 import frappe
 from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc	
@@ -30,7 +31,46 @@ class PurchaseLead(Document):
 			frappe.throw("Please upload the Certificate of Scrapping before proceeding.")
 		elif self.status == "Ready For Certification" and self.certificate_of_scrapping:
 				self.status = "Completed"
-			
+		self.validate_vehicle_number()
+	def validate_vehicle_number(self):
+
+		if not self.vehicle_registration_no:
+			return
+
+		normalized_number = normalize_vehicle_number(
+			self.vehicle_registration_no,
+			validate=True
+		)
+		existing_entries = frappe.get_all(
+			"Purchase Lead",
+			filters={
+				"name": ["!=", self.name]
+			},
+			fields=[
+				"name",
+				"vehicle_registration_no"
+			]
+		)
+
+		for entry in existing_entries:
+
+			if not entry.vehicle_registration_no:
+				continue
+			existing_normalized = normalize_vehicle_number(
+				entry.vehicle_registration_no,
+				validate=False
+			)
+
+			if (
+				existing_normalized
+				and existing_normalized == normalized_number
+			):
+				frappe.throw(
+					f"Vehicle registration number "
+					f"<b>{self.vehicle_registration_no}</b> "
+					f"already exists in Purchase Lead "
+					f"<b>{entry.name}</b>."
+				)
 
 @frappe.whitelist()
 def make_supplier(source_name):
@@ -219,3 +259,66 @@ def make_gate_pass(source_name):
 
     return doc
 
+
+def normalize_vehicle_number(vehicle_number, validate=True):
+
+    if not vehicle_number:
+        if validate:
+            frappe.throw("Vehicle Number is mandatory.")
+        return None
+
+    # Remove spaces, hyphens and special characters
+    value = re.sub(
+        r"[^A-Za-z0-9]",
+        "",
+        vehicle_number
+    ).upper()
+
+    # STATE + RTO + SERIES + NUMBER
+    match = re.match(
+        r"^([A-Z]{2})(\d{1,2})([A-Z]{1,2})(\d+)$",
+        value
+    )
+
+    if not match:
+        if validate:
+            frappe.throw(
+                f"Invalid vehicle registration number "
+                f"<b>{vehicle_number}</b>."
+            )
+        return None
+
+    state = match.group(1)
+    rto = match.group(2)
+    series = match.group(3)
+    number = match.group(4)
+
+    # RTO must be 1 or 2 digits
+    if len(rto) > 2:
+        if validate:
+            frappe.throw(
+                f"Invalid RTO code in "
+                f"<b>{vehicle_number}</b>."
+            )
+        return None
+
+    # Registration number must be maximum 4 digits
+    if len(number) > 4:
+        if validate:
+            frappe.throw(
+                f"Invalid vehicle registration number "
+                f"<b>{vehicle_number}</b>.<br>"
+                "The registration number cannot contain "
+                "more than 4 digits."
+            )
+        return None
+
+    # Normalize RTO to 2 digits
+    rto = rto.zfill(2)
+
+    # Normalize registration number to 4 digits
+    number = number.zfill(4)
+
+    normalized = f"{state}{rto}{series}{number}"
+
+    return normalized
